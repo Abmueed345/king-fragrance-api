@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Panel — United Food</title>
+  <style>
+    :root{
+      --red:#d70000; --blue:#0b72d7; --muted:#f4f6fb;
+      --card-shadow: 0 6px 18px rgba(12,30,60,0.06);
+    }
+    body{ font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      margin:0; padding:20px;
+      background: linear-gradient(180deg,#f6f8fb,#eef4fb); color:#222;
+    }
+    header{ display:flex; justify-content:space-between; align-items:center;
+      gap:16px; margin-bottom:18px;
+    }
+    header h1{ margin:0; font-size:20px; color:var(--red); }
+    .panel { background:white; border-radius:12px; padding:18px;
+      box-shadow: var(--card-shadow); margin-bottom:18px;
+    }
+    table{ width:100%; border-collapse:collapse; font-size:14px; }
+    thead th{ text-align:left; padding:12px 16px;
+      background: linear-gradient(90deg,var(--blue),#0552b3); color:#fff; font-size:13px;
+    }
+    tbody td{ padding:12px 16px; border-bottom:1px solid #eef3fb; }
+    tbody tr:hover{ background:#fcfdff; }
+    .actions button{ margin-right:6px; padding:6px 10px; border-radius:8px;
+      border:none; cursor:pointer; font-size:13px;
+    }
+    .confirm-btn{ background:#28a745; color:#fff; }
+    .delete-btn{ background:#dc3545; color:#fff; }
+    .print-btn{ background:#17a2b8; color:#fff; }
+    .edit-btn{ background:#ffc107; color:#111; }
+    .small-muted { color:#6b7280; font-size:13px; }
+    .flex-row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+    .product-form { width:360px; min-width:260px; }
+    .product-list { flex:1; min-width:300px; max-width:900px; }
+    label { display:block; margin:8px 0 6px; font-size:13px; }
+    input[type="text"], input[type="number"], textarea {
+      width:100%; padding:10px; border-radius:8px; border:1px solid #e6edf9;
+    }
+    textarea{ min-height:80px; resize:vertical; }
+    .btn-primary { background:var(--red); color:#fff; border:none; padding:10px 14px;
+      border-radius:8px; cursor:pointer;
+    }
+    .btn-primary:hover { opacity:0.95; transform:translateY(-1px); }
+    .product-item{ display:flex; align-items:center; justify-content:space-between;
+      padding:8px 10px; border-radius:8px; margin-bottom:8px; background:var(--muted);
+    }
+    .product-meta{ display:flex; align-items:center; gap:10px; }
+    .product-thumb{ width:44px; height:44px; object-fit:cover; border-radius:6px; border:1px solid #eee; }
+    @media (max-width:880px){
+      .flex-row { flex-direction:column; }
+      .product-form { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>United Food — Admin</h1>
+    <div class="small-muted">Manage Orders & Products</div>
+  </header>
+
+  <!-- ORDERS PANEL -->
+  <section class="panel" id="ordersPanel">
+    <h2>Orders</h2>
+    <div style="overflow:auto;">
+      <table aria-label="orders-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Customer</th><th>Phone</th><th>Address</th>
+            <th>Items</th><th>Total</th><th>Date</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTable">
+          <tr><td colspan="8" class="small-muted">Loading orders…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PRODUCTS PANEL -->
+  <section class="panel">
+    <h2>Products</h2>
+    <div class="flex-row">
+      <div class="product-form">
+        <form id="productForm">
+          <label for="pname">Name</label>
+          <input id="pname" type="text" required />
+          <label for="pprice">Price</label>
+          <input id="pprice" type="number" required />
+          <label for="pcategory">Category</label>
+          <input id="pcategory" type="text" />
+          <label for="pimage">Image URL</label>
+          <input id="pimage" type="text" placeholder="https://..." />
+          <label for="pdesc">Description</label>
+          <textarea id="pdesc"></textarea>
+          <div style="margin-top:12px;">
+            <button class="btn-primary" type="submit" id="productSubmit">Add Product</button>
+            <button type="button" id="productCancel" style="margin-left:8px; display:none;">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="product-list"><div id="productList"></div></div>
+    </div>
+  </section>
+
+  <script>
+    /* --------------------------- AUTH + FETCH WRAPPER ---------------------------- */
+    function authFetch(url, opts = {}) {
+      const token = localStorage.getItem('token'); // ✅ fixed key
+      if (!token) {
+        window.location.href = '/login.html';
+        return Promise.reject("No token found");
+      }
+      opts.headers = opts.headers || {};
+      opts.headers['authorization'] = 'Bearer ' + token;
+      return fetch(url, opts).then(res => {
+        if (res.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login.html';
+        }
+        return res;
+      });
+    }
+
+    async function safeJson(res){
+      try{ return await res.json(); } catch{ return null; }
+    }
+
+    /* --------------------------- ORDERS ---------------------------- */
+    const API_ORDERS = '/api/orders';
+    const API_PRODUCTS = '/api/products';
+
+    async function loadOrders(){
+      const tbody = document.getElementById('ordersTable');
+      tbody.innerHTML = '<tr><td colspan="8" class="small-muted">Loading orders…</td></tr>';
+      try {
+        const res = await authFetch(API_ORDERS, { cache:"no-store" });
+        const data = await safeJson(res);
+        let orders = Array.isArray(data) ? data : (data?.orders||[]);
+        if (!orders.length) {
+          tbody.innerHTML = '<tr><td colspan="8" class="small-muted">No orders yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = '';
+        orders.forEach((order,i)=>{
+          const itemsHtml = (order.items||[]).map(it=>`<div>${escapeHtml(it.name)} (x${it.qty||1})</div>`).join('');
+          const tr=document.createElement('tr');
+          tr.innerHTML= `
+            <td>${i+1}</td>
+            <td>${escapeHtml(order.name || order.customerName || order.fullName || 'N/A')}</td>
+            <td>${escapeHtml(order.phone||'')}</td>
+            <td>${escapeHtml(order.address||'')}</td>
+            <td>${itemsHtml}</td>
+            <td><b>Rs. ${order.total||0}</b></td>
+            <td>${order.createdAt?new Date(order.createdAt).toLocaleString():''}</td>
+            <td class="actions"></td>`;
+          const actionsTd = tr.querySelector('.actions');
+          const confirmBtn=document.createElement('button');
+          confirmBtn.className='confirm-btn';
+          confirmBtn.textContent='Mark Preparing';
+          confirmBtn.onclick=()=>confirmOrder(order._id);
+          const delBtn=document.createElement('button');
+          delBtn.className='delete-btn';
+          delBtn.textContent='Delete';
+          delBtn.onclick=()=>deleteOrder(order._id);
+          const printBtn=document.createElement('button');
+          printBtn.className='print-btn';
+          printBtn.textContent='Print';
+          printBtn.onclick=()=>printOrder(order);
+          actionsTd.append(confirmBtn,delBtn,printBtn);
+          tbody.appendChild(tr);
+        });
+      } catch(err){
+        console.error(err);
+        tbody.innerHTML='<tr><td colspan="8">Error loading orders.</td></tr>';
+      }
+    }
+
+    async function confirmOrder(id){
+      await authFetch(`${API_ORDERS}/${id}`,{
+        method:'PUT',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({status:'Preparing'})
+      });
+      loadOrders();
+    }
+
+    async function deleteOrder(id){
+      await authFetch(`${API_ORDERS}/${id}`,{method:'DELETE'});
+      loadOrders();
+    }
+
+    function printOrder(order) {
+  const win = window.open('', '', 'width=900,height=650');
+
+  const html = `
+    <html>
+      <head>
+        <title>Order Invoice</title>
+        <style>
+          body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            line-height: 1.5; 
+          }
+          h2 { color: #d70000; margin-bottom: 10px; }
+          p { margin: 4px 0; }
+          table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+          }
+          th, td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+            font-size: 14px;
+          }
+          th { 
+            background: #f4f4f4; 
+          }
+          h3 { 
+            margin-top: 15px; 
+            color: #111; 
+          }
+
+          /* ✅ Print ke liye styles */
+          @media print {
+            body {
+              margin: 0;
+              padding: 10mm;   /* printer safe margin */
+            }
+            table {
+              page-break-inside: auto;
+            }
+            tr { 
+              page-break-inside: avoid; 
+              page-break-after: auto; 
+            }
+            /* Agar chhota order hai → compact size */
+            @page {
+              size: auto;   /* browser khud adjust karega */
+              margin: 10mm;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <h2>United Food — Order Invoice</h2>
+        <p><b>Customer:</b> ${escapeHtml(order.name || order.customerName || 'N/A')}</p>
+        <p><b>Phone:</b> ${escapeHtml(order.phone || 'N/A')}</p>
+        <p><b>Address:</b> ${escapeHtml(order.address || 'N/A')}</p>
+        <p><b>Date:</b> ${order.createdAt ? new Date(order.createdAt).toLocaleString() : ''}</p>
+
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+          </thead>
+          <tbody>
+            ${(order.items || []).map(it => `
+              <tr>
+                <td>${escapeHtml(it.name)}</td>
+                <td>${it.qty || 1}</td>
+                <td>Rs. ${it.price || 0}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <h3>Total: Rs. ${order.total || 0}</h3>
+      </body>
+    </html>
+  `;
+
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  win.print();
+}
+
+
+    function escapeHtml(str){
+      return String(str||'').replace(/[&<>\"']/g,
+        s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+
+    /* --------------------------- PRODUCTS ---------------------------- */
+    let editProductId=null;
+    async function fetchProducts(){
+      const listEl=document.getElementById('productList');
+      listEl.innerHTML='<div class="small-muted">Loading…</div>';
+      const res=await authFetch(API_PRODUCTS);
+      const data=await safeJson(res);
+      const products=Array.isArray(data)?data:(data?.products||[]);
+      listEl.innerHTML='';
+      products.forEach(p=>{
+        const div=document.createElement('div');
+        div.className='product-item';
+        div.innerHTML= `
+          <div class="product-meta">
+            <img class="product-thumb" src="${escapeHtml(p.imageUrl||'https://via.placeholder.com/40')}">
+            <div>
+              <div>${escapeHtml(p.name)}</div>
+              <div class="small-muted">${escapeHtml(p.category||'')}</div>
+            </div>
+          </div>
+          <div>
+            <b>Rs. ${p.price||0}</b>
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>`;
+        div.querySelector('.edit-btn').onclick=()=>populateProductForm(p);
+        div.querySelector('.delete-btn').onclick=()=>deleteProduct(p._id);
+        listEl.appendChild(div);
+      });
+    }
+
+    function populateProductForm(p){
+      document.getElementById('pname').value=p.name;
+      document.getElementById('pprice').value=p.price;
+      document.getElementById('pcategory').value=p.category;
+      document.getElementById('pimage').value=p.imageUrl;
+      document.getElementById('pdesc').value=p.description;
+      editProductId=p._id;
+      document.getElementById('productSubmit').textContent='Update Product';
+      document.getElementById('productCancel').style.display='inline-block';
+    }
+
+    async function deleteProduct(id){
+      await authFetch(`${API_PRODUCTS}/${id}`,{method:'DELETE'});
+      fetchProducts();
+    }
+
+    document.getElementById('productCancel').onclick=()=>{
+      document.getElementById('productForm').reset();
+      editProductId=null;
+      document.getElementById('productSubmit').textContent='Add Product';
+      document.getElementById('productCancel').style.display='none';
+    };
+
+    document.getElementById('productForm').onsubmit=async e=>{
+      e.preventDefault();
+      const product={
+        name:document.getElementById('pname').value,
+        price:Number(document.getElementById('pprice').value),
+        category:document.getElementById('pcategory').value,
+        imageUrl:document.getElementById('pimage').value,
+        description:document.getElementById('pdesc').value
+      };
+      if(editProductId){
+        await authFetch(`${API_PRODUCTS}/${editProductId}`,{
+          method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+        });
+      }else{
+        await authFetch(API_PRODUCTS,{
+          method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+        });
+      }
+      document.getElementById('productForm').reset();
+      editProductId=null;
+      document.getElementById('productSubmit').textContent='Add Product';
+      document.getElementById('productCancel').style.display='none';
+      fetchProducts();
+    };
+
+    /* --------------------------- INIT ---------------------------- */
+    loadOrders();
+    fetchProducts();
+  </script>
+</body>
+</html>
