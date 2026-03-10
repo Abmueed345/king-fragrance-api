@@ -3,79 +3,356 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Panel — United Food</title>
+  <title>Admin Panel — King's Fragrance</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root{
-      --red:#d70000; --blue:#0b72d7; --muted:#f4f6fb;
-      --card-shadow: 0 6px 18px rgba(12,30,60,0.06);
+      --primary-gold: #D4AF37;
+      --secondary-gold: #C5A059;
+      --dark-bg: #0a0a0a;
+      --light-bg: #f5f5f5;
+      --text-dark: #1a1a1a;
+      --text-light: #f5f5f5;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
     }
-    body{ font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      margin:0; padding:20px;
-      background: linear-gradient(180deg,#f6f8fb,#eef4fb); color:#222;
+    body{ 
+      font-family: 'Montserrat', sans-serif; 
+      margin:0; 
+      padding:20px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
+      color: var(--text-light);
+      min-height: 100vh;
     }
-    header{ display:flex; justify-content:space-between; align-items:center;
-      gap:16px; margin-bottom:18px;
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
     }
-    header h1{ margin:0; font-size:20px; color:var(--red); }
-    .panel { background:white; border-radius:12px; padding:18px;
-      box-shadow: var(--card-shadow); margin-bottom:18px;
+    header{ 
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center;
+      gap:16px; 
+      margin-bottom:24px;
+      padding: 20px;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
     }
-    table{ width:100%; border-collapse:collapse; font-size:14px; }
-    thead th{ text-align:left; padding:12px 16px;
-      background: linear-gradient(90deg,var(--blue),#0552b3); color:#fff; font-size:13px;
+    header h1{ 
+      margin:0; 
+      font-size:24px; 
+      color: var(--primary-gold);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
     }
-    tbody td{ padding:12px 16px; border-bottom:1px solid #eef3fb; }
-    tbody tr:hover{ background:#fcfdff; }
-    .actions button{ margin-right:6px; padding:6px 10px; border-radius:8px;
-      border:none; cursor:pointer; font-size:13px;
+    .panel { 
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px; 
+      padding:24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin-bottom:24px;
+      position: relative;
+      z-index: 1;
     }
-    .confirm-btn{ background:#28a745; color:#fff; }
-    .delete-btn{ background:#dc3545; color:#fff; }
-    .print-btn{ background:#17a2b8; color:#fff; }
-    .edit-btn{ background:#ffc107; color:#111; }
-    .small-muted { color:#6b7280; font-size:13px; }
-    .flex-row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
-    .product-form { width:360px; min-width:260px; }
-    .product-list { flex:1; min-width:300px; max-width:900px; }
-    label { display:block; margin:8px 0 6px; font-size:13px; }
-    input[type="text"], input[type="number"], textarea {
-      width:100%; padding:10px; border-radius:8px; border:1px solid #e6edf9;
+    .panel h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-gold);
+      font-size: 24px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
     }
-    textarea{ min-height:80px; resize:vertical; }
-    .btn-primary { background:var(--red); color:#fff; border:none; padding:10px 14px;
-      border-radius:8px; cursor:pointer;
+    table{ 
+      width:100%; 
+      border-collapse:collapse; 
+      font-size:14px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
     }
-    .btn-primary:hover { opacity:0.95; transform:translateY(-1px); }
-    .product-item{ display:flex; align-items:center; justify-content:space-between;
-      padding:8px 10px; border-radius:8px; margin-bottom:8px; background:var(--muted);
+    thead th{ 
+      text-align:left; 
+      padding:16px 20px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold)); 
+      color:#000; 
+      font-size:13px;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
-    .product-meta{ display:flex; align-items:center; gap:10px; }
-    .product-thumb{ width:44px; height:44px; object-fit:cover; border-radius:6px; border:1px solid #eee; }
+    tbody td{ 
+      padding:16px 20px; 
+      border-bottom:1px solid rgba(255, 255, 255, 0.1); 
+      color: var(--text-light);
+    }
+    tbody tr:hover{ 
+      background: rgba(212, 175, 55, 0.1);
+      transform: scale(1.01);
+      transition: all 0.3s ease;
+    }
+    .actions button{ 
+      margin-right:8px; 
+      padding:8px 14px; 
+      border-radius:10px;
+      border:none; 
+      cursor:pointer; 
+      font-size:12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    .confirm-btn{ 
+      background: linear-gradient(45deg, #28a745, #218838); 
+      color:#fff; 
+    }
+    .confirm-btn:hover{ 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+    .delete-btn{ 
+      background: linear-gradient(45deg, #dc3545, #c82333); 
+      color:#fff; 
+    }
+    .delete-btn:hover{ 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+    }
+    .print-btn{ 
+      background: linear-gradient(45deg, #17a2b8, #138496); 
+      color:#fff; 
+    }
+    .print-btn:hover{ 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(23, 162, 184, 0.4);
+    }
+    .edit-btn{ 
+      background: linear-gradient(45deg, #ffc107, #e0a800); 
+      color:#111; 
+    }
+    .edit-btn:hover{ 
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+    }
+    .small-muted { 
+      color: rgba(255, 255, 255, 0.6); 
+      font-size:13px; 
+    }
+    .flex-row { 
+      display:flex; 
+      gap:24px; 
+      align-items:flex-start; 
+      flex-wrap:wrap; 
+    }
+    .product-form { 
+      width:380px; 
+      min-width:280px; 
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .product-list { 
+      flex:1; 
+      min-width:300px; 
+      max-width:900px; 
+    }
+    label { 
+      display:block; 
+      margin:12px 0 8px; 
+      font-size:13px;
+      color: var(--primary-gold);
+      font-weight: 500;
+    }
+    input[type="text"], 
+    input[type="number"], 
+    textarea {
+      width:100%; 
+      padding:12px 16px; 
+      border-radius:10px; 
+      border:1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+    input[type="text"]:focus, 
+    input[type="number"]:focus, 
+    textarea:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+      outline: none;
+    }
+    textarea{ 
+      min-height:100px; 
+      resize:vertical; 
+    }
+    .btn-primary { 
+      background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold)); 
+      color:#000; 
+      border:none; 
+      padding:12px 20px;
+      border-radius:10px; 
+      cursor:pointer;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    }
+    .product-item{ 
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between;
+      padding:16px 20px; 
+      border-radius:12px; 
+      margin-bottom:12px; 
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .product-item:hover{
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateX(5px);
+    }
+    .product-meta{ 
+      display:flex; 
+      align-items:center; 
+      gap:14px; 
+    }
+    .product-thumb{ 
+      width:56px; 
+      height:56px; 
+      object-fit:cover; 
+      border-radius:10px; 
+      border:2px solid var(--primary-gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    }
+    .stat-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-gold);
+      font-size: 32px;
+      margin: 0;
+    }
+    .stat-card p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 8px 0 0;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-success {
+      background: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+    }
+    .badge-warning {
+      background: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
+    }
+    .badge-danger {
+      background: rgba(220, 53, 69, 0.2);
+      color: #dc3545;
+    }
     @media (max-width:880px){
-      .flex-row { flex-direction:column; }
-      .product-form { width:100%; }
+      .flex-row { 
+        flex-direction:column; 
+      }
+      .product-form { 
+        width:100%; 
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>United Food — Admin</h1>
+    <h1><i class="fas fa-crown"></i> KING'S FRAGRANCE — Admin</h1>
     <div class="small-muted">Manage Orders & Products</div>
   </header>
 
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3 id="totalOrders">0</h3>
+      <p>Total Orders</p>
+    </div>
+    <div class="stat-card">
+      <h3 id="totalRevenue">Rs 0</h3>
+      <p>Total Revenue</p>
+    </div>
+    <div class="stat-card">
+      <h3 id="totalProducts">0</h3>
+      <p>Products</p>
+    </div>
+    <div class="stat-card">
+      <h3 id="pendingOrders">0</h3>
+      <p>Pending Orders</p>
+    </div>
+  </div>
+
   <!-- ORDERS PANEL -->
   <section class="panel" id="ordersPanel">
-    <h2>Orders</h2>
+    <h2><i class="fas fa-shopping-bag"></i> Orders</h2>
     <div style="overflow:auto;">
       <table aria-label="orders-table">
         <thead>
           <tr>
-            <th>#</th><th>Customer</th><th>Phone</th><th>Address</th>
-            <th>Items</th><th>Total</th><th>Date</th><th>Actions</th>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="ordersTable">
-          <tr><td colspan="8" class="small-muted">Loading orders…</td></tr>
+          <tr><td colspan="9" class="small-muted">Loading orders…</td></tr>
         </tbody>
       </table>
     </div>
@@ -83,23 +360,27 @@
 
   <!-- PRODUCTS PANEL -->
   <section class="panel">
-    <h2>Products</h2>
+    <h2><i class="fas fa-gem"></i> Products</h2>
     <div class="flex-row">
       <div class="product-form">
         <form id="productForm">
-          <label for="pname">Name</label>
-          <input id="pname" type="text" required />
-          <label for="pprice">Price</label>
-          <input id="pprice" type="number" required />
-          <label for="pcategory">Category</label>
-          <input id="pcategory" type="text" />
-          <label for="pimage">Image URL</label>
+          <label for="pname"><i class="fas fa-tag"></i> Name</label>
+          <input id="pname" type="text" required placeholder="Perfume name" />
+          <label for="pprice"><i class="fas fa-rupee-sign"></i> Price</label>
+          <input id="pprice" type="number" required placeholder="Price in Rs" />
+          <label for="pcategory"><i class="fas fa-list"></i> Category</label>
+          <input id="pcategory" type="text" placeholder="Floral, Woody, etc." />
+                    <label for="pimage"><i class="fas fa-image"></i> Image URL</label>
           <input id="pimage" type="text" placeholder="https://..." />
-          <label for="pdesc">Description</label>
-          <textarea id="pdesc"></textarea>
-          <div style="margin-top:12px;">
-            <button class="btn-primary" type="submit" id="productSubmit">Add Product</button>
-            <button type="button" id="productCancel" style="margin-left:8px; display:none;">Cancel</button>
+          <label for="pdesc"><i class="fas fa-align-left"></i> Description</label>
+          <textarea id="pdesc" placeholder="Perfume description..."></textarea>
+          <div style="margin-top:16px;">
+            <button class="btn-primary" type="submit" id="productSubmit">
+              <i class="fas fa-plus"></i> Add Product
+            </button>
+            <button type="button" id="productCancel" style="margin-left:12px; display:none; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(212,175,55,0.3); padding:12px 20px; border-radius:10px; cursor:pointer;">
+              <i class="fas fa-times"></i> Cancel
+            </button>
           </div>
         </form>
       </div>
@@ -110,7 +391,7 @@
   <script>
     /* --------------------------- AUTH + FETCH WRAPPER ---------------------------- */
     function authFetch(url, opts = {}) {
-      const token = localStorage.getItem('token'); // ✅ fixed key
+      const token = localStorage.getItem('token');
       if (!token) {
         window.location.href = '/login.html';
         return Promise.reject("No token found");
@@ -130,25 +411,50 @@
       try{ return await res.json(); } catch{ return null; }
     }
 
+    /* --------------------------- STATISTICS ---------------------------- */
+    async function loadStatistics(){
+      try {
+        const ordersRes = await authFetch('/api/orders');
+        const orders = await safeJson(ordersRes);
+        const productsRes = await authFetch('/api/products');
+        const products = await safeJson(productsRes);
+        
+        const ordersArray = Array.isArray(orders) ? orders : (orders?.orders||[]);
+        const productsArray = Array.isArray(products) ? products : (products?.products||[]);
+        
+        const totalRevenue = ordersArray.reduce((sum, order) => sum + (order.total || 0), 0);
+        const pendingOrders = ordersArray.filter(o => o.status !== 'Preparing').length;
+        
+        document.getElementById('totalOrders').textContent = ordersArray.length;
+        document.getElementById('totalRevenue').textContent = 'Rs ' + totalRevenue.toLocaleString();
+        document.getElementById('totalProducts').textContent = productsArray.length;
+        document.getElementById('pendingOrders').textContent = pendingOrders;
+      } catch(err){
+        console.error('Error loading stats:', err);
+      }
+    }
+
     /* --------------------------- ORDERS ---------------------------- */
     const API_ORDERS = '/api/orders';
     const API_PRODUCTS = '/api/products';
 
     async function loadOrders(){
       const tbody = document.getElementById('ordersTable');
-      tbody.innerHTML = '<tr><td colspan="8" class="small-muted">Loading orders…</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9" class="small-muted">Loading orders…</td></tr>';
       try {
         const res = await authFetch(API_ORDERS, { cache:"no-store" });
         const data = await safeJson(res);
         let orders = Array.isArray(data) ? data : (data?.orders||[]);
         if (!orders.length) {
-          tbody.innerHTML = '<tr><td colspan="8" class="small-muted">No orders yet.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="9" class="small-muted">No orders yet.</td></tr>';
           return;
         }
         tbody.innerHTML = '';
         orders.forEach((order,i)=>{
           const itemsHtml = (order.items||[]).map(it=>`<div>${escapeHtml(it.name)} (x${it.qty||1})</div>`).join('');
           const tr=document.createElement('tr');
+          const statusClass = order.status === 'Preparing' ? 'badge-success' : (order.status === 'Pending' ? 'badge-warning' : 'badge-danger');
+          const statusText = order.status || 'Pending';
           tr.innerHTML= `
             <td>${i+1}</td>
             <td>${escapeHtml(order.name || order.customerName || order.fullName || 'N/A')}</td>
@@ -157,26 +463,27 @@
             <td>${itemsHtml}</td>
             <td><b>Rs. ${order.total||0}</b></td>
             <td>${order.createdAt?new Date(order.createdAt).toLocaleString():''}</td>
+            <td><span class="badge ${statusClass}">${statusText}</span></td>
             <td class="actions"></td>`;
           const actionsTd = tr.querySelector('.actions');
           const confirmBtn=document.createElement('button');
           confirmBtn.className='confirm-btn';
-          confirmBtn.textContent='Mark Preparing';
+          confirmBtn.innerHTML='<i class="fas fa-check"></i> Mark Preparing';
           confirmBtn.onclick=()=>confirmOrder(order._id);
           const delBtn=document.createElement('button');
           delBtn.className='delete-btn';
-          delBtn.textContent='Delete';
+          delBtn.innerHTML='<i class="fas fa-trash"></i> Delete';
           delBtn.onclick=()=>deleteOrder(order._id);
           const printBtn=document.createElement('button');
           printBtn.className='print-btn';
-          printBtn.textContent='Print';
+          printBtn.innerHTML='<i class="fas fa-print"></i> Print';
           printBtn.onclick=()=>printOrder(order);
           actionsTd.append(confirmBtn,delBtn,printBtn);
           tbody.appendChild(tr);
         });
       } catch(err){
         console.error(err);
-        tbody.innerHTML='<tr><td colspan="8">Error loading orders.</td></tr>';
+        tbody.innerHTML='<tr><td colspan="9">Error loading orders.</td></tr>';
       }
     }
 
@@ -186,101 +493,109 @@
         body:JSON.stringify({status:'Preparing'})
       });
       loadOrders();
+      loadStatistics();
     }
 
     async function deleteOrder(id){
-      await authFetch(`${API_ORDERS}/${id}`,{method:'DELETE'});
-      loadOrders();
+      if(confirm('Are you sure you want to delete this order?')){
+        await authFetch(`${API_ORDERS}/${id}`,{method:'DELETE'});
+        loadOrders();
+        loadStatistics();
+      }
     }
 
     function printOrder(order) {
-  const win = window.open('', '', 'width=900,height=650');
+      const win = window.open('', '', 'width=900,height=650');
 
-  const html = `
-    <html>
-      <head>
-        <title>Order Invoice</title>
-        <style>
-          body { 
-            font-family: Arial, sans-serif; 
-            padding: 20px; 
-            line-height: 1.5; 
-          }
-          h2 { color: #d70000; margin-bottom: 10px; }
-          p { margin: 4px 0; }
-          table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
-          }
-          th, td { 
-            border: 1px solid #ddd; 
-            padding: 8px; 
-            text-align: left; 
-            font-size: 14px;
-          }
-          th { 
-            background: #f4f4f4; 
-          }
-          h3 { 
-            margin-top: 15px; 
-            color: #111; 
-          }
+      const html = `
+        <html>
+          <head>
+            <title>Order Invoice — King's Fragrance</title>
+            <style>
+              body { 
+                font-family: 'Montserrat', Arial, sans-serif; 
+                padding: 20px; 
+                line-height: 1.5; 
+                background: #fff;
+              }
+              h2 { color: #D4AF37; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+              p { margin: 4px 0; }
+              table { 
+                width: 100%; 
+                border-collapse: collapse; 
+                margin-top: 15px; 
+              }
+              th, td { 
+                border: 1px solid #ddd; 
+                padding: 10px; 
+                text-align: left; 
+                font-size: 14px;
+              }
+              th { 
+                background: #D4AF37; 
+                color: #000;
+              }
+              h3 { 
+                margin-top: 15px; 
+                color: #111; 
+                font-size: 18px;
+              }
+              .footer {
+                margin-top: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: #666;
+              }
+              @media print {
+                body { margin: 0; padding: 10mm; }
+                table { page-break-inside: auto; }
+                tr { page-break-inside: avoid; page-break-after: auto; }
+                @page { size: auto; margin: 10mm; }
+              }
+            </style>
+          </head>
+          <body>
+            <h2><i class="fas fa-crown"></i> KING'S FRAGRANCE</h2>
+            <p><b>Order Invoice</b></p>
+            <hr style="border: 1px solid #D4AF37; margin: 15px 0;">
+            <p><b>Customer:</b> ${escapeHtml(order.name || order.customerName || 'N/A')}</p>
+            <p><b>Phone:</b> ${escapeHtml(order.phone || 'N/A')}</p>
+            <p><b>Address:</b> ${escapeHtml(order.address || 'N/A')}</p>
+            <p><b>Date:</b> ${order.createdAt ? new Date(order.createdAt).toLocaleString() : ''}</p>
 
-          /* ✅ Print ke liye styles */
-          @media print {
-            body {
-              margin: 0;
-              padding: 10mm;   /* printer safe margin */
-            }
-            table {
-              page-break-inside: auto;
-            }
-            tr { 
-              page-break-inside: avoid; 
-              page-break-after: auto; 
-            }
-            /* Agar chhota order hai → compact size */
-            @page {
-              size: auto;   /* browser khud adjust karega */
-              margin: 10mm;
-            }
-          }
-        </style>
-      </head>
-      <body>
-        <h2>United Food — Order Invoice</h2>
-        <p><b>Customer:</b> ${escapeHtml(order.name || order.customerName || 'N/A')}</p>
-        <p><b>Phone:</b> ${escapeHtml(order.phone || 'N/A')}</p>
-        <p><b>Address:</b> ${escapeHtml(order.address || 'N/A')}</p>
-        <p><b>Date:</b> ${order.createdAt ? new Date(order.createdAt).toLocaleString() : ''}</p>
+            <table>
+              <thead>
+                <tr><th>Item</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr>
+              </thead>
+              <tbody>
+                ${(order.items || []).map(it => `
+                  <tr>
+                    <td>${escapeHtml(it.name)}</td>
+                    <td>${it.qty || 1}</td>
+                    <td>Rs. ${it.price || 0}</td>
+                    <td>Rs. ${it.price * (it.qty || 1)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
 
-        <table>
-          <thead>
-            <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
-          </thead>
-          <tbody>
-            ${(order.items || []).map(it => `
-              <tr>
-                <td>${escapeHtml(it.name)}</td>
-                <td>${it.qty || 1}</td>
-                <td>Rs. ${it.price || 0}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
+            <h3 style="text-align: right; margin-top: 20px;">Total: Rs. ${order.total || 0}</h3>
+            
+            <div class="footer">
+              <p>Thank you for choosing King's Fragrance! 🌟</p>
+              <p>Call us: +92 310 0006972 | Email: info@kingfragrance.com</p>
+              <p>Designing & Development |HAM SOFTWARE SOUTION +92 317 2428287 </p>
+              
+            </div>
+          </body>
+        </html>
+      `;
 
-        <h3>Total: Rs. ${order.total || 0}</h3>
-      </body>
-    </html>
-  `;
-
-  win.document.write(html);
-  win.document.close();
-  win.focus();
-  win.print();
-}
-
+      win.document.write(html);
+      win.document.close();
+      win.focus();
+      win.print();
+    }
 
     function escapeHtml(str){
       return String(str||'').replace(/[&<>\"']/g,
@@ -303,14 +618,14 @@
           <div class="product-meta">
             <img class="product-thumb" src="${escapeHtml(p.imageUrl||'https://via.placeholder.com/40')}">
             <div>
-              <div>${escapeHtml(p.name)}</div>
+              <div style="color: #D4AF37; font-weight: 600;">${escapeHtml(p.name)}</div>
               <div class="small-muted">${escapeHtml(p.category||'')}</div>
             </div>
           </div>
           <div>
-            <b>Rs. ${p.price||0}</b>
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
+            <b style="color: #D4AF37;">Rs. ${p.price||0}</b>
+            <button class="edit-btn" style="margin-left:8px;"><i class="fas fa-edit"></i></button>
+            <button class="delete-btn"><i class="fas fa-trash"></i></button>
           </div>`;
         div.querySelector('.edit-btn').onclick=()=>populateProductForm(p);
         div.querySelector('.delete-btn').onclick=()=>deleteProduct(p._id);
@@ -325,19 +640,22 @@
       document.getElementById('pimage').value=p.imageUrl;
       document.getElementById('pdesc').value=p.description;
       editProductId=p._id;
-      document.getElementById('productSubmit').textContent='Update Product';
+      document.getElementById('productSubmit').innerHTML='<i class="fas fa-save"></i> Update Product';
       document.getElementById('productCancel').style.display='inline-block';
     }
 
     async function deleteProduct(id){
-      await authFetch(`${API_PRODUCTS}/${id}`,{method:'DELETE'});
-      fetchProducts();
+      if(confirm('Are you sure you want to delete this product?')){
+        await authFetch(`${API_PRODUCTS}/${id}`,{method:'DELETE'});
+        fetchProducts();
+        loadStatistics();
+      }
     }
 
     document.getElementById('productCancel').onclick=()=>{
       document.getElementById('productForm').reset();
       editProductId=null;
-      document.getElementById('productSubmit').textContent='Add Product';
+      document.getElementById('productSubmit').innerHTML='<i class="fas fa-plus"></i> Add Product';
       document.getElementById('productCancel').style.display='none';
     };
 
@@ -361,14 +679,22 @@
       }
       document.getElementById('productForm').reset();
       editProductId=null;
-      document.getElementById('productSubmit').textContent='Add Product';
+      document.getElementById('productSubmit').innerHTML='<i class="fas fa-plus"></i> Add Product';
       document.getElementById('productCancel').style.display='none';
       fetchProducts();
+      loadStatistics();
     };
 
     /* --------------------------- INIT ---------------------------- */
     loadOrders();
     fetchProducts();
+    loadStatistics();
+    
+    // Auto refresh every 30 seconds
+    setInterval(() => {
+      loadOrders();
+      loadStatistics();
+    }, 30000);
   </script>
 </body>
 </html>
