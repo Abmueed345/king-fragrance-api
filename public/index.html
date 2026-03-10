@@ -107,7 +107,7 @@
       color: var(--primary-gold) !important;
     }
 
-    /* Hero Section - NEW PREMIUM IMAGE */
+    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%), 
                   url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=1920&q=80');
@@ -396,7 +396,8 @@
       background: var(--primary-gold);
       color: #000;
     }
-    #cartSidebar .footer {
+    
+        #cartSidebar .footer {
       padding: 30px;
       background: rgba(255, 255, 255, 0.05);
       border-top: 2px solid var(--primary-gold);
@@ -452,7 +453,7 @@
       color: rgba(255, 255, 255, 0.5);
     }
 
-    /* Footer - MATCHING HEADER IMAGE */
+    /* Footer */
     footer {
       text-align: center;
       padding: 80px 20px;
@@ -632,6 +633,34 @@
   </div>
 </div>
 
+<!-- Product Description Modal (NEW) -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: #D4AF37;">Product Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img id="modalProductImage" src="" class="img-fluid mb-3 rounded" alt="Product">
+        <h4 id="modalProductName" style="color: #D4AF37; font-weight: 700;"></h4>
+        <p id="modalProductCategory" class="text-muted"></p>
+        <h5 class="text-warning">Rs <span id="modalProductPrice"></span></h5>
+        <hr style="border-color: rgba(212, 175, 55, 0.3);">
+        <h6 style="color: #D4AF37; font-weight: 600;">Description:</h6>
+        <p id="modalProductDescription" style="line-height: 1.8;"></p>
+        <hr style="border-color: rgba(212, 175, 55, 0.3);">
+        <h6 style="color: #D4AF37; font-weight: 600;">Notes:</h6>
+        <p id="modalProductNotes" style="line-height: 1.8;"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="modalAddToCart" class="btn btn-luxury">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer id="about">
   <div class="container">
@@ -669,7 +698,8 @@
       category: "Floral",
       price: 12500,
       description: "Elegant rose notes with a touch of vanilla.",
-      imageUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Rose, Middle: Vanilla, Base: Musk"
     },
     {
       id: 2,
@@ -677,7 +707,8 @@
       category: "Fresh",
       price: 9800,
       description: "Crisp marine scents for a refreshing feel.",
-      imageUrl: "https://images.unsplash.com/photo-1594035910387-fea4779426e9?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1594035910387-fea4779426e9?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Sea Salt, Middle: Citrus, Base: Amber"
     },
     {
       id: 3,
@@ -685,15 +716,18 @@
       category: "Woody",
       price: 15000,
       description: "Rich amber and sandalwood blend.",
-      imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Bergamot, Middle: Amber, Base: Sandalwood"
     },
-    {
+    
+        {
       id: 4,
       name: "Velvet Night",
       category: "Oriental",
       price: 18500,
       description: "Sensual spices and dark musk.",
-      imageUrl: "https://images.unsplash.com/photo-1585232314886-224422222222?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1585232314886-224422222222?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Saffron, Middle: Oud, Base: Dark Musk"
     },
     {
       id: 5,
@@ -701,7 +735,8 @@
       category: "Fresh",
       price: 8500,
       description: "Zesty lemon and orange notes.",
-      imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Lemon, Middle: Orange, Base: Cedar"
     },
     {
       id: 6,
@@ -709,7 +744,8 @@
       category: "Woody",
       price: 22000,
       description: "Premium oud wood with saffron.",
-      imageUrl: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Saffron, Middle: Oud, Base: Rose"
     },
     {
       id: 7,
@@ -717,7 +753,8 @@
       category: "Floral",
       price: 11000,
       description: "Soft jasmine with white musk.",
-      imageUrl: "https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Jasmine, Middle: White Musk, Base: Vanilla"
     },
     {
       id: 8,
@@ -725,7 +762,8 @@
       category: "Oriental",
       price: 16500,
       description: "Exotic spices from the east.",
-      imageUrl: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=600&q=80",
+      notes: "Top: Cardamom, Middle: Cinnamon, Base: Patchouli"
     }
   ];
 
@@ -734,6 +772,7 @@
   const cartItems = document.getElementById('cartItems');
   const cartTotal = document.getElementById('cart-total');
   const productList = document.getElementById('product-list');
+  let currentProduct = null;
 
   // Load Products
   async function loadProducts() {
@@ -758,7 +797,7 @@
       categories[category].push(p);
     });
 
-        Object.keys(categories).forEach((category, index) => {
+    Object.keys(categories).forEach((category, index) => {
       productList.innerHTML += `
         <div class="category-section mt-5 reveal" style="animation-delay: ${index * 0.2}s">
           <h3 class="text-center text-light mb-4" style="font-family: 'Playfair Display'">${category}</h3>
@@ -774,7 +813,16 @@
                     <p class="product-category">${category}</p>
                     <h5 class="product-name">${p.name}</h5>
                     <p class="product-price">Rs ${p.price}</p>
-                    <button class="btn btn-add-cart add-to-cart"
+                    <button class="btn btn-luxury btn-sm w-100 mb-2" data-bs-toggle="modal" data-bs-target="#productModal"
+                            data-id="${p.id}"
+                            data-name="${p.name}"
+                            data-price="${p.price}"
+                            data-image="${p.imageUrl}"
+                            data-description="${p.description || 'No description available'}"
+                            data-notes="${p.notes || 'No notes available'}">
+                      View More
+                    </button>
+                    <button class="btn btn-add-cart add-to-cart w-100"
                             data-name="${p.name}"
                             data-price="${p.price}"
                             data-image="${p.imageUrl}">
@@ -789,6 +837,7 @@
       `;
     });
 
+    // Add to Cart Button Event
     document.querySelectorAll('.add-to-cart').forEach(btn => {
       btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -803,6 +852,43 @@
           btn.innerHTML = 'Add to Cart';
         }, 2000);
       });
+    });
+
+    // Product Modal Event
+    document.getElementById('productModal').addEventListener('show.bs.modal', (e) => {
+      const button = e.relatedTarget;
+      const productId = button.dataset.id;
+      const productName = button.dataset.name;
+      const productPrice = button.dataset.price;
+      const productImage = button.dataset.image;
+      const productDescription = button.dataset.description;
+      const productNotes = button.dataset.notes;
+
+      document.getElementById('modalProductImage').src = productImage;
+      document.getElementById('modalProductName').textContent = productName;
+      document.getElementById('modalProductPrice').textContent = productPrice;
+      document.getElementById('modalProductCategory').textContent = button.closest('.product-card').querySelector('.product-category').textContent;
+      document.getElementById('modalProductDescription').textContent = productDescription;
+      document.getElementById('modalProductNotes').textContent = productNotes;
+
+      currentProduct = {
+        id: productId,
+        name: productName,
+        price: parseInt(productPrice),
+        image: productImage
+      };
+    });
+
+    // Modal Add to Cart Button
+    document.getElementById('modalAddToCart').addEventListener('click', () => {
+      if (currentProduct) {
+        const item = cart.find(i => i.name === currentProduct.name);
+        if (item) item.qty++;
+        else cart.push({ name: currentProduct.name, price: currentProduct.price, image: currentProduct.image, qty: 1 });
+        updateCart();
+        bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+        alert('Product added to cart!');
+      }
     });
   }
 
@@ -834,6 +920,7 @@
     cart[index].qty++;
     updateCart();
   }
+
   function decreaseQty(index) {
     if (cart[index].qty > 1) cart[index].qty--;
     else cart.splice(index, 1);
@@ -893,6 +980,7 @@
   document.getElementById("cartBtn").addEventListener("click", () => {
     document.getElementById("cartSidebar").classList.add("open");
   });
+
   document.getElementById("closeCart").addEventListener("click", () => {
     document.getElementById("cartSidebar").classList.remove("open");
   });
