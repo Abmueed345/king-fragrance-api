@@ -525,6 +525,42 @@
       transform: translateY(0);
     }
 
+
+    /* Order Form Input Fields */
+.order-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+.order-input:focus {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #000 !important;
+  border-color: var(--primary-gold) !important;
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.order-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Modal Body Background */
+.modal-body {
+  background: rgba(10, 10, 10, 0.98) !important;
+  backdrop-filter: blur(20px);
+}
+
+/* Modal Content */
+.modal-content {
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(20px);
+}
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.8rem; }
@@ -533,6 +569,10 @@
       .section-title { font-size: 2.2rem; }
       .form-control { padding: 15px 25px; }
     }
+
+
+
+
   </style>
 </head>
 <body>
@@ -613,15 +653,15 @@
         <div class="modal-body">
           <div class="mb-3">
             <label class="form-label" style="color: #D4AF37; font-weight: 600;">Full Name</label>
-            <input type="text" class="form-control" name="customerName" required placeholder="Enter your name">
+            <input type="text" class="form-control order-input" name="customerName" required placeholder="Enter your name">
           </div>
           <div class="mb-3">
             <label class="form-label" style="color: #D4AF37; font-weight: 600;">Phone Number</label>
-            <input type="tel" class="form-control" name="phone" required placeholder="0300-1234567">
+            <input type="tel" class="form-control order-input" name="phone" required placeholder="0300-1234567">
           </div>
           <div class="mb-3">
             <label class="form-label" style="color: #D4AF37; font-weight: 600;">Delivery Address</label>
-            <textarea class="form-control" name="address" rows="3" required placeholder="House #, Street, City"></textarea>
+            <textarea class="form-control order-input" name="address" rows="3" required placeholder="House #, Street, City"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -672,9 +712,11 @@
       <a href="https://www.facebook.com/share/14QmSNPBkbW/" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook">
         <i class="fab fa-facebook"></i>
       </a>
-      <a href="https://www.instagram.com/king.s_fragrance?utm_source=qr&igsh=MXh6YzVtbmplb2UxdQ==" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram">
+      
+      <a href="https://www.instagram.com/king.s_fragrance.store?utm_source=qr&igsh=MXh6YzVtbmplb2UxdQ==" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram">
         <i class="fab fa-instagram"></i>
       </a>
+
       <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Follow us on Twitter">
         <i class="fab fa-twitter"></i>
       </a>
