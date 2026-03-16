@@ -362,7 +362,7 @@
   <section class="panel">
     <h2><i class="fas fa-gem"></i> Products</h2>
     <div class="flex-row">
-      <div class="product-form">
+      <!-- <div class="product-form">
         <form id="productForm">
           <label for="pname"><i class="fas fa-tag"></i> Name</label>
           <input id="pname" type="text" required placeholder="Perfume name" />
@@ -383,7 +383,40 @@
             </button>
           </div>
         </form>
-      </div>
+      </div> -->
+
+      <!-- PRODUCT FORM - REPLACE the existing product-form section -->
+<div class="product-form">
+  <form id="productForm">
+    <label for="pname"><i class="fas fa-tag"></i> Name</label>
+    <input id="pname" type="text" required placeholder="Perfume name" />
+    
+    <label for="pcategory"><i class="fas fa-list"></i> Category</label>
+    <input id="pcategory" type="text" placeholder="Floral, Woody, etc." />
+    
+    <label for="poriginalprice"><i class="fas fa-rupee-sign"></i> Original Price</label>
+    <input id="poriginalprice" type="number" required placeholder="4000" />
+    
+    <label for="pprice"><i class="fas fa-percent"></i> Offer Price</label>
+    <input id="pprice" type="number" required placeholder="2999" />
+    
+    <label for="pimage"><i class="fas fa-image"></i> Image URL</label>
+    <input id="pimage" type="text" placeholder="https://..." />
+    
+    <label for="pdesc"><i class="fas fa-align-left"></i> Description</label>
+    <textarea id="pdesc" placeholder="Perfume description..."></textarea>
+    
+    <div style="margin-top:16px;">
+      <button class="btn-primary" type="submit" id="productSubmit">
+        <i class="fas fa-plus"></i> Add Product
+      </button>
+      <button type="button" id="productCancel" style="margin-left:12px; display:none; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(212,175,55,0.3); padding:12px 20px; border-radius:10px; cursor:pointer;">
+        <i class="fas fa-times"></i> Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
       <div class="product-list"><div id="productList"></div></div>
     </div>
   </section>
@@ -614,6 +647,21 @@
       products.forEach(p=>{
         const div=document.createElement('div');
         div.className='product-item';
+        // div.innerHTML= `
+        //   <div class="product-meta">
+        //     <img class="product-thumb" src="${escapeHtml(p.imageUrl||'https://via.placeholder.com/40')}">
+        //     <div>
+        //       <div style="color: #D4AF37; font-weight: 600;">${escapeHtml(p.name)}</div>
+        //       <div class="small-muted">${escapeHtml(p.category||'')}</div>
+        //     </div>
+        //   </div>
+        //   <div>
+        //     <b style="color: #D4AF37;">Rs. ${p.price||0}</b>
+        //     <button class="edit-btn" style="margin-left:8px;"><i class="fas fa-edit"></i></button>
+        //     <button class="delete-btn"><i class="fas fa-trash"></i></button>
+        //   </div>`;
+
+        // Replace the product-item innerHTML part
         div.innerHTML= `
           <div class="product-meta">
             <img class="product-thumb" src="${escapeHtml(p.imageUrl||'https://via.placeholder.com/40')}">
@@ -622,27 +670,50 @@
               <div class="small-muted">${escapeHtml(p.category||'')}</div>
             </div>
           </div>
-          <div>
-            <b style="color: #D4AF37;">Rs. ${p.price||0}</b>
-            <button class="edit-btn" style="margin-left:8px;"><i class="fas fa-edit"></i></button>
-            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+          <div style="text-align: right;">
+            ${p.originalPrice && p.originalPrice > p.price ? 
+              `<div style="text-decoration: line-through; color: rgba(255,255,255,0.6); font-size: 12px;">Rs. ${p.originalPrice}</div>` : ''
+            }
+            <b style="color: #D4AF37; font-size: 16px;">Rs. ${p.price}</b>
+            <div style="color: #28a745; font-size: 11px; font-weight: 600;">
+              ${p.originalPrice && p.originalPrice > p.price ? 
+                `Save Rs. ${p.originalPrice - p.price}` : ''
+              }
+            </div>
+            <button class="edit-btn" style="margin-left:8px; margin-top:4px;"><i class="fas fa-edit"></i></button>
+            <button class="delete-btn" style="margin-top:4px;"><i class="fas fa-trash"></i></button>
           </div>`;
+
         div.querySelector('.edit-btn').onclick=()=>populateProductForm(p);
         div.querySelector('.delete-btn').onclick=()=>deleteProduct(p._id);
         listEl.appendChild(div);
       });
     }
 
+    // function populateProductForm(p){
+    //   document.getElementById('pname').value=p.name;
+    //   document.getElementById('pprice').value=p.price;
+    //   document.getElementById('pcategory').value=p.category;
+    //   document.getElementById('pimage').value=p.imageUrl;
+    //   document.getElementById('pdesc').value=p.description;
+    //   editProductId=p._id;
+    //   document.getElementById('productSubmit').innerHTML='<i class="fas fa-save"></i> Update Product';
+    //   document.getElementById('productCancel').style.display='inline-block';
+    // }
+
     function populateProductForm(p){
-      document.getElementById('pname').value=p.name;
-      document.getElementById('pprice').value=p.price;
-      document.getElementById('pcategory').value=p.category;
-      document.getElementById('pimage').value=p.imageUrl;
-      document.getElementById('pdesc').value=p.description;
-      editProductId=p._id;
-      document.getElementById('productSubmit').innerHTML='<i class="fas fa-save"></i> Update Product';
-      document.getElementById('productCancel').style.display='inline-block';
-    }
+  document.getElementById('pname').value=p.name;
+  document.getElementById('pcategory').value=p.category;
+  document.getElementById('poriginalprice').value=p.originalPrice || p.price;
+  document.getElementById('pprice').value=p.price;
+  document.getElementById('pimage').value=p.imageUrl;
+  document.getElementById('pdesc').value=p.description;
+  editProductId=p._id;
+  document.getElementById('productSubmit').innerHTML='<i class="fas fa-save"></i> Update Product';
+  document.getElementById('productCancel').style.display='inline-block';
+}
+
+
 
     async function deleteProduct(id){
       if(confirm('Are you sure you want to delete this product?')){
@@ -659,31 +730,58 @@
       document.getElementById('productCancel').style.display='none';
     };
 
+    // document.getElementById('productForm').onsubmit=async e=>{
+    //   e.preventDefault();
+    //   const product={
+    //     name:document.getElementById('pname').value,
+    //     price:Number(document.getElementById('pprice').value),
+    //     category:document.getElementById('pcategory').value,
+    //     imageUrl:document.getElementById('pimage').value,
+    //     description:document.getElementById('pdesc').value
+    //   };
+    //   if(editProductId){
+    //     await authFetch(`${API_PRODUCTS}/${editProductId}`,{
+    //       method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+    //     });
+    //   }else{
+    //     await authFetch(API_PRODUCTS,{
+    //       method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+    //     });
+    //   }
+    //   document.getElementById('productForm').reset();
+    //   editProductId=null;
+    //   document.getElementById('productSubmit').innerHTML='<i class="fas fa-plus"></i> Add Product';
+    //   document.getElementById('productCancel').style.display='none';
+    //   fetchProducts();
+    //   loadStatistics();
+    // };
+
     document.getElementById('productForm').onsubmit=async e=>{
-      e.preventDefault();
-      const product={
-        name:document.getElementById('pname').value,
-        price:Number(document.getElementById('pprice').value),
-        category:document.getElementById('pcategory').value,
-        imageUrl:document.getElementById('pimage').value,
-        description:document.getElementById('pdesc').value
-      };
-      if(editProductId){
-        await authFetch(`${API_PRODUCTS}/${editProductId}`,{
-          method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
-        });
-      }else{
-        await authFetch(API_PRODUCTS,{
-          method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
-        });
-      }
-      document.getElementById('productForm').reset();
-      editProductId=null;
-      document.getElementById('productSubmit').innerHTML='<i class="fas fa-plus"></i> Add Product';
-      document.getElementById('productCancel').style.display='none';
-      fetchProducts();
-      loadStatistics();
-    };
+  e.preventDefault();
+  const product={
+    name:document.getElementById('pname').value,
+    originalPrice: Number(document.getElementById('poriginalprice').value), // NEW
+    price: Number(document.getElementById('pprice').value),
+    category:document.getElementById('pcategory').value,
+    imageUrl:document.getElementById('pimage').value,
+    description:document.getElementById('pdesc').value
+  };
+  if(editProductId){
+    await authFetch(`${API_PRODUCTS}/${editProductId}`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+    });
+  }else{
+    await authFetch(API_PRODUCTS,{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(product)
+    });
+  }
+  document.getElementById('productForm').reset();
+  editProductId=null;
+  document.getElementById('productSubmit').innerHTML='<i class="fas fa-plus"></i> Add Product';
+  document.getElementById('productCancel').style.display='none';
+  fetchProducts();
+  loadStatistics();
+};
 
     /* --------------------------- INIT ---------------------------- */
     loadOrders();
