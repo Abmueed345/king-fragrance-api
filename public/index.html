@@ -655,6 +655,59 @@
   }
 } */
 
+.hero-trust {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.trust-card {
+  width: 200px;
+  padding: 25px 20px;
+  text-align: center;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.trust-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  
+  box-shadow: 
+    0 20px 60px rgba(212,175,55,0.5),
+    0 0 30px rgba(212,175,55,0.4);
+  
+  border-color: rgba(212,175,55,0.6);
+}
+
+.trust-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.trust-card h3 {
+  font-size: 1.8rem;
+  color: #D4AF37;
+  margin-bottom: 5px;
+  font-weight: 800;
+}
+
+.trust-card p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+}
 
 :root {
   --gold-1: #D4AF37;
@@ -670,11 +723,11 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+
   background: 
-    /* radial-gradient(circle at 20% 80%, rgba(218, 165, 32, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(15,15,35,0.95) 0%, rgba(0,0,0,0.98) 100%), */
-    url('https://t3.ftcdn.net/jpg/16/19/76/90/360_F_1619769032_o8B8FBHq2r3oiZiLWh6kyAkGt7KLIArh.jpg');
+    linear-gradient(rgba(10,10,20,0.75), rgba(0,0,0,0.9)),
+    url('https://img.freepik.com/premium-photo/commercial-perfume-photo_551707-67924.jpg?w=360');
+
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -704,13 +757,20 @@
   z-index: 2;
 }
 
-.sparkle {
+/* .sparkle {
   position: absolute;
   width: 4px;
   height: 4px;
   background: var(--gold-1);
   border-radius: 50%;
   animation: sparkleFloat 4s ease-in-out infinite;
+} */
+
+.sparkle {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #D4AF37, transparent);
+  box-shadow: 0 0 15px #D4AF37;
 }
 
 .sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
@@ -761,31 +821,96 @@
   margin-bottom: 10px;
 }
 
-.title-main {
-  /* display: block; */
+/* .title-main {
+  
   background: linear-gradient(135deg, #fff, var(--gold-1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   position: relative;
+} */
+
+.title-main {
+  background: linear-gradient(135deg, #fff, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 
+    0 0 20px rgba(212,175,55,0.5),
+    0 0 40px rgba(212,175,55,0.3);
 }
 
-.title-highlight {
+/* .title-highlight {
   display: block;
   background: linear-gradient(45deg, var(--gold-1), var(--gold-2), var(--purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-size: 0.85em;
+} */
+
+.hero-content {
+  animation: fadeUp 1.2s ease forwards;
+  opacity: 0;
 }
 
-.hero-subtitle {
-  /* font-size: 1.4rem; */
+@keyframes fadeUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background: radial-gradient(circle, rgba(212,175,55,0.25), transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+}
+
+.title-highlight {
+  background: linear-gradient(45deg, #D4AF37, #F4D03F, #8A2BE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 25px rgba(212,175,55,0.6);
+}
+
+/* .hero-subtitle {
+
   font-weight: 300;
   max-width: 600px;
   margin-bottom: 50px;
   line-height: 1.6;
   opacity: 0.95;
+} */
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 1px;
+}
+
+.luxury-line {
+  color: #D4AF37;
+  letter-spacing: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-12px) scale(1.08) rotateX(10deg);
 }
 
 .location {
@@ -1696,16 +1821,17 @@
         <span class="title-line">Discover</span>
         <span class="title-main">King's Luxury</span>
         <span class="title-highlight">Perfumes</span>
+        
       </h1>
       
       <p class="hero-subtitle">
-        Authentic Designer Fragrances | 100% Original | 
+        Experience Royal Fragrance | 100% Original | 
         <span class="location">ALL PAKISTAN</span>
       </p>
       
       <div class="hero-cta">
         <a href="#collection" class="btn btn-primary btn-luxury">
-          <span>Shop Now</span>
+          <span>Our Collection</span>
           <span class="btn-icon">🛒</span>
         </a>
         <a href="#best-sellers" class="btn btn-secondary">
@@ -1713,7 +1839,7 @@
         </a>
       </div>
       
-      <div class="hero-trust">
+      <!-- <div class="hero-trust">
         <div class="trust-item">
           <span class="trust-number">25K+</span>
           <span>Happy Customers</span>
@@ -1728,7 +1854,30 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div class="hero-trust">
+  
+  <div class="trust-card">
+    <div class="trust-icon">👑</div>
+    <h3>25K+</h3>
+    <p>Happy Customers</p>
   </div>
+
+  <div class="trust-card">
+    <div class="trust-icon">✔️</div>
+    <h3>100%</h3>
+    <p>Original Products</p>
+  </div>
+
+  <div class="trust-card">
+    <div class="trust-icon">🚚</div>
+    <h3>Fast</h3>
+    <p>Home Delivery</p>
+  </div>
+
+</div>
+
 </section>
 
 <!-- Product Collection -->
