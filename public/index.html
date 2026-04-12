@@ -997,9 +997,171 @@
         margin-bottom: 50px;
       }
     }
+
+    /* ✅ LUXURY PRELOADER */
+.preloader-active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #f8f9fa 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  overflow: hidden;
+}
+
+.preloader-active.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-container {
+  text-align: center;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.loader-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  animation: logoFloat 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+  border: 4px solid rgba(212, 175, 55, 0.3);
+}
+
+.spinner-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 30px;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgba(212, 175, 55, 0.2);
+  border-top: 4px solid var(--primary-gold);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 4px solid rgba(250, 208, 44, 0.2);
+  border-top: 4px solid var(--secondary-gold);
+  border-radius: 50%;
+  animation: spin-reverse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.loader-text h3 {
+  color: var(--primary-gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.loader-text p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+  border-radius: 2px;
+  width: 0%;
+  animation: progress 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2); }
+  100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4); }
+}
+
+@keyframes textGlow {
+  0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+  100% { text-shadow: 0 0 25px rgba(212, 175, 55, 0.7), 0 0 35px rgba(212, 175, 55, 0.3); }
+}
+
+@keyframes progress {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+  .loader-logo { width: 90px; height: 90px; }
+  .loader-text h3 { font-size: 1.8rem; }
+  .progress-bar { width: 160px; }
+}
+
+
 </style>
 
 </head>
+
+
+<!-- ✅ FULLSCREEN LOADER -->
+<div id="preloader" class="preloader-active">
+  <div class="loader-container">
+    <div class="logo-spin">
+      <img src="assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg" alt="King's Fragrance" class="loader-logo">
+    </div>
+    <div class="spinner-wrapper">
+      <div class="spinner"></div>
+      <div class="spinner-overlay"></div>
+    </div>
+    <div class="loader-text">
+      <h3>King's Fragrance</h3>
+      <p>Loading Luxury...</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
     
 <body>
 
@@ -1680,6 +1842,37 @@
   });
 
   console.log('👑 Backend + Mock Ready! 🚀');
+</script>
+
+<script>
+// ✅ SMART PRELOADER - Website fully load hone ke baad hide
+window.addEventListener('load', function() {
+  // Simulate loading time (minimum 2.5s for luxury feel)
+  const minLoadTime = 2500;
+  const startTime = Date.now();
+  
+  function hideLoader() {
+    const preloader = document.getElementById('preloader');
+    preloader.classList.add('hidden');
+    
+    // Navbar smooth appear
+    setTimeout(() => {
+      document.querySelector('nav').style.transform = 'translateY(0)';
+      document.querySelector('nav').style.opacity = '1';
+    }, 200);
+  }
+  
+  // Hide after minimum time OR when everything loaded
+  const loadTime = Date.now() - startTime;
+  const delay = Math.max(minLoadTime - loadTime, 0);
+  
+  setTimeout(hideLoader, delay);
+  
+  console.log('🚀 Website loaded perfectly!');
+});
+
+// Prevent flash of unstyled content
+document.documentElement.classList.add('loaded');
 </script>
 
 </body>
