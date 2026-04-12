@@ -1170,7 +1170,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top" >
   <div class="container">
-    <a class="navbar-brand" href="#"> <img src="assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg" alt="" height="100px" width="100px"></a>
+    <a class="navbar-brand" href="#"> <img src="assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg" alt="" height="100px" width="100px"  loading="eager"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -1298,7 +1298,7 @@
     <div class="carousel-item active">
 
       <a href="#collection">
-      <img src="assets/img/jojo.png" class="d-block w-100" alt="">
+      <img src="assets/img/jojo.png" class="d-block w-100" alt="" loading="eager">
 
       </a>
       
@@ -1307,7 +1307,7 @@
 
       
     <a href="#collection">
-      <img src="assets/img/New Fragrance.png" class="d-block w-100" alt="">
+      <img src="assets/img/New Fragrance.png" class="d-block w-100" alt="" loading="eager">
 
       </a>
     
@@ -1317,7 +1317,7 @@
 
       
     <a href="#collection">
-      <img src="assets/img/KIng’s (1).png" class="d-block w-100" alt="">
+      <img src="assets/img/KIng’s (1).png" class="d-block w-100" alt="" loading="eager">
 
       </a>
     
@@ -1326,7 +1326,7 @@
     <div class="carousel-item">
      
       <a href="#collection">
-      <img src="assets/img/Special Sale.png" class="d-block w-100" alt="">
+      <img src="assets/img/Special Sale.png" class="d-block w-100" alt=""  loading="eager">
 
       </a>
 
@@ -1875,6 +1875,29 @@ window.addEventListener('load', function() {
 
 // Prevent flash of unstyled content
 document.documentElement.classList.add('loaded');
+</script>
+
+
+<script>
+// ✅ PRELOAD ALL IMAGES - 0.5s loading
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
+
+// Critical Images Preload
+const criticalImages = [
+  'assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg',
+  'assets/img/jojo.png',
+  'assets/img/New Fragrance.png',
+  'assets/img/KIng’s (1).png',
+  'assets/img/Special Sale.png'
+];
+
+criticalImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+  img.decode().catch(() => {}); // Fast decode
+});
 </script>
 
 </body>
