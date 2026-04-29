@@ -1,13 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Title & Meta Tags -->
   <title>King's Fragrance - Luxury Perfumes Pakistan | Best Fragrances Online</title>
   <meta name="description" content="Discover premium luxury perfumes in Pakistan at King's Fragrance. Shop best-selling floral, woody, oriental & fresh fragrances with up to 30% OFF. Free delivery Lahore, Karachi, Islamabad.">
-  <meta name="keywords" content="luxury perfumes Pakistan, best fragrances online, attar Pakistan, perfume shop Lahore, Karachi perfumes, Eid perfume offers, men's perfumes, women's perfumes, oud fragrances">
+  <meta name="keywords" content="luxury perfumes Pakistan, best fragrances online, attar Pakistan, perfume shop Lahore, Karachi perfumes, Eid perfume offers, men's perfumes, women's perfumes, oud fragrances, kids perfumes">
   
-  <!-- Open Graph -->
   <meta property="og:title" content="King's Fragrance - Royal Luxury Perfumes Pakistan">
   <meta property="og:description" content="Premium perfumes with up to 30% OFF. Shop floral, woody, oriental fragrances. Free delivery across Pakistan.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=1200&q=80">
@@ -16,11 +15,8 @@
   <link rel="canonical" href="https://kingsfragrance.store/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts for Luxury Look -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
@@ -37,29 +33,21 @@
       --shadow-gold: rgba(212, 175, 55, 0.3);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--light-bg);
       color: var(--text-dark);
       overflow-x: hidden;
-      position: relative;
     }
 
-    h1, h2, h3, h4, h5, .navbar-brand {
-      font-family: 'Playfair Display', serif;
-    }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Playfair Display', serif; }
 
     /* Navbar */
     nav {
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
-      color: var(--text-dark);
       padding: 20px 40px;
       box-shadow: 0 2px 20px var(--shadow-light);
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -70,11 +58,7 @@
       transition: all 0.3s ease;
     }
     
-    nav.scrolled {
-      padding: 15px 40px;
-      background: rgba(255, 255, 255, 0.99);
-      box-shadow: 0 4px 30px var(--shadow-light);
-    }
+    nav.scrolled { padding: 15px 40px; box-shadow: 0 4px 30px var(--shadow-light); }
     
     .navbar-brand {
       font-size: 1.1rem;
@@ -84,6 +68,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     
     .nav-link {
@@ -91,8 +78,8 @@
       font-size: 0.95rem;
       letter-spacing: 1.5px;
       transition: all 0.3s ease;
-      position: relative;
       font-weight: 500;
+      position: relative;
     }
     
     .nav-link::after {
@@ -107,82 +94,111 @@
       transform: translateX(-50%);
     }
     
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    .nav-link:hover, .nav-link.active {
-      color: var(--primary-gold) !important;
-    }
-
-    /* ✅ NEW DROPDOWN STYLES */
-    .dropdown-menu {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px var(--shadow-gold);
-      padding: 15px 0;
-      margin-top: 15px;
-      min-width: 250px;
-    }
-
-    .dropdown-item {
-      padding: 12px 25px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      color: var(--text-dark);
-      border-radius: 15px;
-      margin: 5px 15px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dropdown-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
-      transition: width 0.3s ease;
-      z-index: -1;
-    }
-
-    .dropdown-item:hover::before {
-      width: 100%;
-    }
-
-    .dropdown-item:hover {
-      color: #111 !important;
-      transform: translateX(10px);
-      box-shadow: 0 5px 20px var(--shadow-gold);
-    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--primary-gold) !important; }
 
     /* Hero Carousel */
     /* .carousel-item img {
-      height: 100vh;
+      height: 60vh;
       object-fit: cover;
+    } */
+
+    /* Category Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 100px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .category-card {
+      height: 420px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px var(--shadow-light);
+      transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor: pointer;
+      position: relative;
+      background: var(--card-bg);
+    }
+
+    .category-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 40px 80px var(--shadow-gold);
+    }
+
+    .category-image {
       width: 100%;
-    } */
+      height: 70%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
 
-    /* @media (max-width: 768px) {
-      .carousel-item img {
-        height: 70vh;
-        object-fit: cover;
-      }
-    } */
+    .category-card:hover .category-image { transform: scale(1.1); }
 
-    /* Section Title */
+    .category-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(212, 175, 55, 0.95), rgba(250, 208, 44, 0.9));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-card:hover .category-overlay { opacity: 1; }
+
+    .category-title {
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .category-info {
+      padding: 25px;
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .category-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .category-count {
+      color: var(--primary-gold);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* Products Section */
+    .products-section {
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
     .section-title {
       text-align: center;
       margin-bottom: 80px;
       color: var(--text-dark);
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       position: relative;
-      animation: fadeInUp 1s ease;
     }
 
     .section-title::after {
@@ -195,35 +211,6 @@
       border-radius: 2px;
     }
 
-    /* ✅ NEW CATEGORY SEPARATOR */
-    .category-separator {
-      height: 300px;
-      width: 100%;
-      margin: 80px 0;
-      position: relative;
-      overflow: hidden;
-      border-radius: 25px;
-    }
-
-    .category-separator img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.7) contrast(1.1);
-    }
-
-    .category-separator::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(212,175,55,0.3), rgba(250,208,44,0.2));
-      z-index: 1;
-    }
-
-    /* Product Cards */
     .product-card {
       background: var(--card-bg);
       border: 1px solid rgba(212, 175, 55, 0.1);
@@ -232,8 +219,6 @@
       box-shadow: 0 15px 40px var(--shadow-light);
       transition: all 0.5s ease;
       height: 100%;
-      position: relative;
-      animation: fadeInUp 1s ease;
     }
 
     .product-card:hover {
@@ -242,12 +227,7 @@
       border-color: var(--primary-gold);
     }
 
-    .product-img-wrapper {
-      height: 300px;
-      overflow: hidden;
-      position: relative;
-    }
-
+    .product-img-wrapper { height: 300px; overflow: hidden; }
     .product-img-wrapper img {
       width: 100%;
       height: 100%;
@@ -255,16 +235,9 @@
       transition: transform 0.8s ease;
     }
 
-    .product-card:hover .product-img-wrapper img {
-      transform: scale(1.2);
-    }
+    .product-card:hover .product-img-wrapper img { transform: scale(1.2); }
 
-    .card-body {
-      padding: 25px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+    .card-body { padding: 25px; text-align: center; }
 
     .product-name {
       font-size: 1.3rem;
@@ -282,19 +255,8 @@
       font-weight: 600;
     }
 
-    /* Price Styles */
-    .original-price {
-      text-decoration: line-through !important;
-      color: var(--text-light) !important;
-      font-size: 14px;
-    }
-
-    .offer-price {
-      color: var(--primary-gold) !important;
-      font-size: 20px !important;
-      font-weight: bold !important;
-    }
-
+    .original-price { text-decoration: line-through !important; color: var(--text-light) !important; font-size: 14px; }
+    .offer-price { color: var(--primary-gold) !important; font-size: 20px !important; font-weight: bold !important; }
     .discount-badge {
       color: #27ae60 !important;
       font-size: 11px !important;
@@ -306,66 +268,49 @@
       margin-top: 4px;
     }
 
-    /* ✅ NEW VIEW ALL BUTTON */
-    .btn-view-all {
-      background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
-      color: #111 !important;
-      padding: 15px 35px;
+    .btn-back {
+      background: black;
+      color: white !important;
+      padding: 10px 20px;
       font-size: 1.1rem;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: 2px;
       text-transform: uppercase;
       border-radius: 50px;
       border: none;
       display: block;
-      margin: 40px auto 0;
+      margin: 60px auto 0;
       width: fit-content;
       box-shadow: 0 15px 40px var(--shadow-gold);
       transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
 
-    .btn-view-all:hover {
+    .btn-back:hover {
       transform: translateY(-8px) scale(1.05);
       box-shadow: 0 25px 60px var(--shadow-gold);
-      color: #111 !important;
+      color: whitesmoke !important;
     }
 
     .btn-add-cart {
       background: transparent;
       border: 2px solid var(--primary-gold);
-      color: var(--primary-gold);
+      color: black;
       padding: 12px 25px;
       border-radius: 30px;
       font-size: 0.95rem;
       font-weight: 600;
       transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
       width: 100%;
       margin-top: 10px;
     }
 
-    .btn-add-cart::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--primary-gold);
-      transition: left 0.4s ease;
-    }
-
-    .btn-add-cart:hover::before {
-      left: 0;
-    }
-
     .btn-add-cart:hover {
-      color: #fff;
+      background: var(--primary-gold);
+      color: white !important;
       transform: scale(1.05);
     }
 
-    /* Cart Sidebar & Other Styles (same as before) */
+    /* Cart Sidebar */
     #cartSidebar {
       position: fixed;
       top: 0;
@@ -389,90 +334,85 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Responsive
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
     @media (max-width: 768px) {
       nav { padding: 15px 20px; }
       nav.scrolled { padding: 12px 20px; }
-      .product-img-wrapper { height: 250px; }
-      #cartSidebar { width: 100%; right: -100%; }
+      .category-grid { 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 20px; 
+        padding: 60px 15px; 
+      }
+      .category-card { height: 340px; }
+      .category-title { font-size: 1.6rem; }
+      .products-section { padding: 80px 15px; }
       .section-title { font-size: 2.5rem; margin-bottom: 50px; }
-      .category-separator { height: 200px; margin: 50px 0; }
+      #cartSidebar { width: 100%; right: -100%; }
+      .product-img-wrapper { height: 250px; }
+      /* .carousel-item img { height: 50vh; } */
     }
 
     @media (max-width: 576px) {
-      .product-img-wrapper { height: 220px !important; }
-      .card-body { padding: 15px 10px !important; }
-      .product-name { font-size: 1.1rem !important; }
-    } */
+      .category-grid { grid-template-columns: 1fr; }
+      .category-card { height: 320px; }
+      .category-title { font-size: 1.4rem; }
+    }
 
-    /* Responsive */
-@media (max-width: 768px) {
-  nav { padding: 15px 20px; }
-  nav.scrolled { padding: 12px 20px; }
-  .product-img-wrapper { height: 250px; }
-  #cartSidebar { width: 100%; right: -100%; }
-  .section-title { font-size: 2.5rem; margin-bottom: 50px; }
-  .category-separator { height: 200px; margin: 50px 0; }
-  
-  /* ✅ 2 PRODUCTS PER ROW ON MOBILE */
-  .col-12 { max-width: 50% !important; flex: 0 0 50% !important; padding: 8px !important; }
-  
-  /* Adjust card padding for smaller screens */
-  .card-body { padding: 20px 15px !important; }
-}
-
-@media (max-width: 576px) {
-  .product-img-wrapper { height: 220px !important; }
-  .card-body { padding: 15px 10px !important; }
-  .product-name { font-size: 1.1rem !important; }
-  
-  /* Very small screens pe bhi 2 products */
-  .col-12 { max-width: 50% !important; flex: 0 0 50% !important; }
-}
-
+    .btn-luxury { 
+      background: black; 
+      color: white !important; 
+      padding: 12px 25px; 
+      border-radius: 30px; 
+      font-weight: 600; 
+      border: none; 
+      transition: all 0.4s ease; 
+      box-shadow: 0 10px 30px var(--shadow-gold);
+    }
+    .btn-luxury:hover { 
+      transform: translateY(-5px) scale(1.05); 
+      box-shadow: 0 20px 50px var(--shadow-gold);
+      color: white !important;
+    }
   </style>
 </head>
 
 <body>
-<!-- Navbar with Dynamic Dropdown -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg" alt="" height="50px" width="50px" loading="eager">
+    <a class="navbar-brand" href="#home">
+      <img src="assets/img/WhatsApp Image 2026-04-28 at 9.43.54 AM.jpeg" alt="King's Fragrance" height="150" width="100">
+    
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExample">
       <ul class="navbar-nav me-3">
-        <li class="nav-item"><a class="nav-link active" href="#nono">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#collection" id="collectionDropdown" role="button" data-bs-toggle="dropdown">
-            Collection
-          </a>
-          <!-- ✅ DYNAMIC CATEGORIES DROPDOWN -->
-          <ul class="dropdown-menu" id="categoriesDropdown" aria-labelledby="collectionDropdown">
-            <!-- Categories will be populated dynamically -->
-          </ul>
-        </li>
+        <li class="nav-item"><a class="nav-link active" href="#categories">Shop</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
       </ul>
       <button id="cartBtn" class="btn btn-outline-warning position-relative">
-        <i class="fas fa-shopping-bag"></i> Cart 
+        <i class="fas fa-shopping-bag"></i> 
         <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
       </button>
     </div>
   </div>
 </nav>
 
+
 <!-- Hero Carousel -->
-<!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
   </div>
+
   <div class="carousel-inner">
     <div class="carousel-item active">
       <a href="#collection">
@@ -486,68 +426,13 @@
     </div>
     <div class="carousel-item">
       <a href="#collection">
-        <img src="assets/img/KIng's (1).png" class="d-block w-100" alt="" loading="eager">
+        <img src="assets/img/KIng’s (1).png" class="d-block w-100" alt="" loading="eager">
       </a>
     </div>
     <div class="carousel-item">
       <a href="#collection">
-        <img src="assets/img/Special Sale.png" class="d-block w-100" alt="" loading="eager">
+        <img src="assets/img/Special Sale.png" class="d-block w-100" alt=""  loading="eager">
       </a>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div> -->
-
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
-  </div>
-
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-
-      <a href="#collection">
-      <img src="assets/img/jojo.png" class="d-block w-100" alt="" loading="eager">
-
-      </a>
-      
-    </div>
-    <div class="carousel-item">
-
-      
-    <a href="#collection">
-      <img src="assets/img/New Fragrance.png" class="d-block w-100" alt="" loading="eager">
-
-      </a>
-    
-    </div>
-
-    <div class="carousel-item">
-
-      
-    <a href="#collection">
-      <img src="assets/img/KIng’s (1).png" class="d-block w-100" alt="" loading="eager">
-
-      </a>
-    
-    </div>
-
-    <div class="carousel-item">
-     
-      <a href="#collection">
-      <img src="assets/img/Special Sale.png" class="d-block w-100" alt=""  loading="eager">
-
-      </a>
-
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -560,60 +445,72 @@
   </button>
 </div>
 
-<!-- ✅ NEW PRODUCT COLLECTION WITH 4 PRODUCTS + VIEW ALL -->
-<div class="container mt-5 pt-5" id="collection">
-  <h2 class="section-title reveal">Our Exclusive Collection</h2>
-  <div id="product-list">
-    <!-- Products load dynamically -->
+<!-- Categories Grid -->
+<section id="categories" class="container-fluid">
+  <h2 class="section-title reveal">Choose Your Collection</h2>
+  <div id="category-grid" class="category-grid">
+    <!-- Categories will load here -->
   </div>
-</div>
+</section>
+
+<!-- Products Section -->
+<section id="products-section" class="products-section" style="display: none;">
+  <div class="container">
+    <h2 id="current-category-title" class="section-title reveal"></h2>
+    <div id="product-list" class="row g-4">
+      <!-- Products will load here -->
+    </div>
+    <a href="#categories" class="btn-back reveal" id="back-to-categories">
+      <i class="fas fa-arrow-left me-2"></i>Back to All Categories
+    </a>
+  </div>
+</section>
 
 <!-- Cart Sidebar -->
 <div id="cartSidebar">
   <div class="header" style="background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold)); color: #111; padding: 30px; font-size: 1.5rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.3);">
-    <span><i class="fas fa-shopping-bag"></i> Your Shopping Bag</span>
-    <button id="closeCart" class="btn btn-sm" style="background: rgba(0,0,0,0.2); color: white; border: none;">✕</button>
+    <span><i class="fas fa-shopping-bag"></i> Shopping Bag</span>
+    <button id="closeCart" class="btn btn-sm" style="background: rgba(0,0,0,0.2); color: white; border: none; font-size: 1.2rem;">✕</button>
   </div>
-  <div id="cartItems" class="p-3" style="max-height: 60vh; overflow-y: auto;">
-    <!-- Cart items will appear here -->
-  </div>
+  <div id="cartItems" class="p-3" style="max-height: 60vh; overflow-y: auto;"></div>
   <div class="footer" style="padding: 30px; background: rgba(255, 255, 255, 0.2); border-top: 2px solid var(--primary-gold); position: sticky; bottom: 0;">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h5 class="mb-0">Total:</h5>
       <h5 class="mb-0" style="color: var(--primary-gold);">Rs <span id="cart-total">0</span></h5>
     </div>
-    <button class="btn w-100 p-3" data-bs-toggle="modal" data-bs-target="#orderModal" style="background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold)); color: #111; border: none; border-radius: 15px; font-weight: 700; letter-spacing: 1px; font-size: 1.1rem;">
+    <button class="btn w-100 p-3" data-bs-toggle="modal" data-bs-target="#orderModal" 
+            style="background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold)); color: #111; border: none; border-radius: 15px; font-weight: 700; letter-spacing: 1px; font-size: 1.1rem;">
       Proceed to Checkout <i class="fas fa-arrow-right"></i>
     </button>
   </div>
 </div>
 
 <!-- Order Modal -->
-<div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="orderModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius: 25px; border: none; box-shadow: 0 20px 60px var(--shadow-light); background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);">
+    <div class="modal-content" style="border-radius: 25px; border: none; box-shadow: 0 20px 60px var(--shadow-light); background: var(--glass-bg); backdrop-filter: blur(20px);">
       <form id="order-form">
-        <div class="modal-header" style="border-bottom: 2px solid rgba(212, 175, 55, 0.2); color: var(--text-dark);">
+        <div class="modal-header" style="border-bottom: 2px solid rgba(212, 175, 55, 0.2);">
           <h5 class="modal-title" style="color: var(--primary-gold);">Complete Your Order</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label class="form-label" style="color: var(--text-dark); font-weight: 600;">Full Name</label>
-            <input type="text" class="form-control order-input" name="customerName" required placeholder="Enter your full name" style="border-radius: 15px; padding: 15px 20px; border: 2px solid rgba(212, 175, 55, 0.2); background: rgba(255, 255, 255, 0.8);">
+            <label class="form-label fw-bold">Full Name *</label>
+            <input type="text" class="form-control" name="customerName" required style="border-radius: 15px; padding: 15px; border: 2px solid rgba(212, 175, 55, 0.2);">
           </div>
           <div class="mb-3">
-            <label class="form-label" style="color: var(--text-dark); font-weight: 600;">Phone Number</label>
-            <input type="tel" class="form-control order-input" name="phone" required placeholder="03XX-XXXXXXX">
+            <label class="form-label fw-bold">Phone Number *</label>
+            <input type="tel" class="form-control" name="phone" required placeholder="03XX-XXXXXXX">
           </div>
           <div class="mb-3">
-            <label class="form-label" style="color: var(--text-dark); font-weight: 600;">Delivery Address</label>
-            <textarea class="form-control order-input" name="address" rows="3" required placeholder="House #, Street, Area, City"></textarea>
+            <label class="form-label fw-bold">Complete Address *</label>
+            <textarea class="form-control" name="address" rows="3" required placeholder="House #, Street name, Area, City, Pakistan"></textarea>
           </div>
         </div>
         <div class="modal-footer" style="border-top: 2px solid rgba(212, 175, 55, 0.2);">
           <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn-luxury">Place Order <i class="fas fa-check"></i></button>
+          <button type="submit" class="btn-luxury">Place Order <i class="fas fa-check ms-2"></i></button>
         </div>
       </form>
     </div>
@@ -654,12 +551,30 @@
   </div>
 </div>
 
+
 <!-- Footer -->
+<!-- <footer id="about" class="py-5 mt-5" style="background: var(--text-dark); color: white;">
+  <div class="container text-center">
+    <img src="assets/img/WhatsApp Image 2026-04-28 at 9.43.54 AM.jpeg" alt="Logo" height="80" width="100" class="mb-4 rounded shadow">
+    <h3 class="mb-4">KING'S FRAGRANCE</h3>
+    <p class="lead mb-3">Premium luxury fragrances delivered across Pakistan. Shop floral, woody, oriental perfumes with 30% OFF.</p>
+    <p class="mb-4"><strong>Serving:</strong> Lahore | Karachi | Islamabad | Rawalpindi | Faisalabad | All Pakistan</p>
+    <p class="mb-4 fs-4 fw-bold">📞 <a href="tel:+923100006972" style="color: var(--primary-gold); text-decoration: none;">+92 310 0006972</a></p>
+    
+    <div class="social-icons mb-5">
+      <a href="https://www.facebook.com/share/14QmSNPBkbW/" target="_blank" class="mx-3 fs-1" style="color: var(--primary-gold);" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/king.s_fragrance.store" target="_blank" class="mx-3 fs-1" style="color: var(--primary-gold);" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/923100006972" target="_blank" class="mx-3 fs-1" style="color: var(--primary-gold);" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p style="opacity: 0.8; font-size: 0.9rem;">&copy; 2025 King's Fragrance. All Rights Reserved. | Fast Delivery Nationwide</p>
+  </div>
+</footer> -->
+
 <footer id="about">
   <div class="container">
-    <h3 style="text-align: center;">
-      <img src="assets/img/WhatsApp Image 2026-04-12 at 6.46.52 AM.jpeg" alt="" height="80px" width="80px"> 
-      KING'S FRAGRANCE - Best Perfumes in Pakistan
+    <h3 style="text-align: center; margin-top: 50px;">
+      <img src="assets/img/WhatsApp Image 2026-04-28 at 9.43.54 AM.jpeg" alt="" height="150px" width="100px"> 
+      KING'S INTERATIONAL
     </h3>
     <p style="text-align: center; margin: 20px 0;">Premium luxury fragrances delivered across Pakistan. Shop floral, woody, oriental perfumes with 30% OFF.</p>
     <p style="text-align: center;"><strong>Serving:</strong> Lahore | Karachi | Islamabad | Rawalpindi | Faisalabad | All Pakistan</p>
@@ -686,385 +601,464 @@
   </div>
 </footer>
 
-<!-- Bootstrap JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- ✅ ENHANCED JAVASCRIPT WITH ALL NEW FEATURES -->
 <script>
-  // Mock Data (Backend fallback)
+  // ✅ YOUR CUSTOM CATEGORY IMAGES - YAHAN APNI IMAGES ADD KARO
+  const CATEGORY_IMAGES = {
+    // Perfume Categories
+    'abc': 'assets/img/WhatsApp Image 2026-04-28 at 9.28.00 AM.jpeg',
+    'Woody': 'assets/img/woody-category.jpg',
+    'Fresh': 'assets/img/fresh-category.jpg',
+    'Oriental': 'assets/img/oriental-category.jpg',
+    
+    // Women Items
+    'Women Perfumes': 'assets/img/women-perfumes.jpg',
+    'Women Accessories': 'assets/img/women-accessories.jpg',
+    
+    // Kids Items
+    'Kids Perfumes': 'assets/img/kids-perfumes.jpg',
+    'Kids Gift Sets': 'assets/img/kids-gifts.jpg',
+    
+    // Other Categories
+    'Attar': 'assets/img/attar-category.jpg',
+    'Oud Collection': 'assets/img/oud-category.jpg',
+    'Eid Special': 'assets/img/eid-special.jpg',
+    'New Arrivals': 'assets/img/new-arrivals.jpg',
+    'Branded Perfumes': 'assets/img/branded-perfumes.jpg'
+  };
+
+  // Fallback Image
+  const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=80';
+
+  // Mock Products Data (Backend se replace hoga)
   const mockProducts = [
-    {id: 1, name: "Midnight Rose", category: "Floral", price: 8750, originalPrice: 12500, imageUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80", description: "Elegant rose notes", notes: "Rose, Vanilla, Musk"},
-    {id: 2, name: "Ocean Breeze", category: "Fresh", price: 6860, originalPrice: 9800, imageUrl: "https://images.unsplash.com/photo-1594035910387-fea4779426e9?auto=format&fit=crop&w=600&q=80", description: "Marine freshness", notes: "Sea Salt, Citrus"},
-    {id: 3, name: "Golden Amber", category: "Woody", price: 10500, originalPrice: 15000, imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80", description: "Rich amber blend", notes: "Bergamot, Amber"},
-    {id: 4, name: "Velvet Night", category: "Oriental", price: 12950, originalPrice: 18500, imageUrl: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=600&q=80", description: "Sensual spices", notes: "Saffron, Oud"},
-    {id: 5, name: "Citrus Burst", category: "Fresh", price: 5950, originalPrice: 8500, imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80", description: "Zesty citrus", notes: "Lemon, Orange"},
-    {id: 6, name: "Royal Oud", category: "Woody", price: 15400, originalPrice: 22000, imageUrl: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80", description: "Premium oud", notes: "Saffron, Oud Wood"},
-    {id: 7, name: "Jasmine Dream", category: "Floral", price: 7700, originalPrice: 11000, imageUrl: "https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=600&q=80", description: "Soft jasmine", notes: "Jasmine, Musk"},
-    {id: 8, name: "Spice Route", category: "Oriental", price: 11550, originalPrice: 16500, imageUrl: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=600&q=80", description: "Exotic spices", notes: "Cardamom, Cinnamon"},
-    {id: 9, name: "Summer Bloom", category: "Floral", price: 9200, originalPrice: 13200, imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80", description: "Fresh floral", notes: "Lily, Peony"},
-    {id: 10, name: "Deep Forest", category: "Woody", price: 11200, originalPrice: 16000, imageUrl: "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80", description: "Forest woods", notes: "Cedar, Vetiver"}
+    // Floral
+    {id: 1, name: "Midnight Rose", category: "Floral", price: 8750, imageUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+    {id: 2, name: "Jasmine Dream", category: "Floral", price: 7700, imageUrl: "https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=600&q=80"},
+    
+    // Fresh
+    {id: 3, name: "Ocean Breeze", category: "Fresh", price: 6860, imageUrl: "https://images.unsplash.com/photo-1594035910387-fea4779426e9?auto=format&fit=crop&w=600&q=80"},
+    
+    // Woody
+    {id: 4, name: "Royal Oud", category: "Woody", price: 15400, imageUrl: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80"},
+    
+    // Women Perfumes
+    {id: 5, name: "Lady Elegance", category: "Women Perfumes", price: 9500, imageUrl: "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"},
+    
+    // Kids
+    {id: 6, name: "Baby Fresh", category: "Kids Perfumes", price: 4500, imageUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
+    
+    // Attar
+    {id: 7, name: "Pure Musk Attar", category: "Attar", price: 6500, imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80"}
   ];
 
+  // Global Variables
   const cart = [];
   let allProducts = [];
-  let currentCategoryFilter = null;
+  let currentCategory = null;
 
   // DOM Elements
+  const categoryGrid = document.getElementById('category-grid');
+  const productList = document.getElementById('product-list');
+  const productsSection = document.getElementById('products-section');
+  const categoryTitle = document.getElementById('current-category-title');
   const cartCount = document.getElementById('cart-count');
   const cartItems = document.getElementById('cartItems');
   const cartTotal = document.getElementById('cart-total');
-  const productList = document.getElementById('product-list');
-  const categoriesDropdown = document.getElementById('categoriesDropdown');
-  let currentProduct = null;
 
-  // ✅ LOAD PRODUCTS FROM BACKEND OR MOCK
+  // Load Products from Backend or Mock
   async function loadProducts() {
     try {
       const res = await fetch('/api/products');
-      if (!res.ok) throw new Error('API failed');
-      allProducts = await res.json();
+      if (res.ok) allProducts = await res.json();
+      else throw new Error('API failed');
     } catch (error) {
-      console.log('Using mock data');
-      allProducts = mockProducts;
+      console.log('🔄 Using mock data - Backend connect karen');
+      allProducts = mockProducts.map(p => ({
+        ...p,
+        originalPrice: p.price * 1.4,
+        description: p.description || 'Premium luxury fragrance'
+      }));
     }
     
-    // Enhance with discounts
-    allProducts = allProducts.map(p => ({
-      ...p,
-      originalPrice: p.originalPrice || p.price * 1.4,
-      description: p.description || 'Premium luxury fragrance',
-      notes: p.notes || 'Top, Middle & Base notes'
-    }));
-    
-    renderCategoriesDropdown();
-    renderProducts(allProducts, null); // Show all initially
+    renderCategories();
   }
 
-  // ✅ DYNAMIC CATEGORIES DROPDOWN
-  function renderCategoriesDropdown() {
-    const categories = [...new Set(allProducts.map(p => p.category))].sort();
-    
-    categoriesDropdown.innerHTML = `
-      <li><a class="dropdown-item" href="#collection" data-category="">All Categories</a></li>
-      ${categories.map(cat => `
-        <li><a class="dropdown-item" href="#collection" data-category="${cat}">${cat}</a></li>
-      `).join('')}
-    `;
-    
-    // Category filter events
-    categoriesDropdown.querySelectorAll('.dropdown-item').forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const category = item.dataset.category;
-        currentCategoryFilter = category || null;
-        renderProducts(allProducts, currentCategoryFilter);
-        document.querySelector('#collectionDropdown').click(); // Close dropdown
+  // Render Category Grid (Main Page)
+  function renderCategories() {
+    const categories = {};
+    allProducts.forEach(p => {
+      if (!categories[p.category]) categories[p.category] = [];
+      categories[p.category].push(p);
+    });
+
+    categoryGrid.innerHTML = Object.keys(categories).sort().map(category => {
+      const categoryImage = CATEGORY_IMAGES[category] || FALLBACK_IMAGE;
+      return `
+        <div class="category-card reveal" data-category="${category}">
+          <img src="${categoryImage}" 
+               class="category-image" 
+               alt="${category} Collection" 
+               onerror="this.src='${FALLBACK_IMAGE}'"
+               loading="lazy">
+          <div class="category-overlay">
+            <div class="category-title">
+              <i class="fas fa-search me-2"></i>
+              Explore ${category}
+            </div>
+          </div>
+          <div class="category-info">
+            <div class="category-name">${category}</div>
+            <div class="category-count">
+              <i class="fas fa-star me-1 text-warning"></i>
+              ${categories[category].length} Products
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Category click events
+    document.querySelectorAll('.category-card').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.addEventListener('click', () => {
+        currentCategory = card.dataset.category;
+        showCategoryProducts(currentCategory);
       });
     });
   }
 
-
-    // ✅ RENDER PRODUCTS (4 per category OR all for specific category)
-  function renderProducts(products, filterCategory) {
-    productList.innerHTML = '';
-    
-    if (filterCategory) {
-      // Show ALL products for specific category
-      const categoryProducts = products.filter(p => p.category === filterCategory);
-      renderCategorySection(filterCategory, categoryProducts, true);
-    } else {
-      // Show 4 products per category
-      const categories = {};
-      products.forEach(p => {
-        if (!categories[p.category]) categories[p.category] = [];
-        categories[p.category].push(p);
-      });
-
-      Object.keys(categories).forEach((category, index) => {
-        const limitedProducts = categories[category].slice(0, 4); // Only 4 products
-        renderCategorySection(category, limitedProducts, false);
-      });
-    }
-  }
-
-  // ✅ SINGLE CATEGORY SECTION
-  function renderCategorySection(category, products, showAll) {
-    const isLastCategory = !showAll; // Add separator only between main categories
-    
-    productList.innerHTML += `
-      <div class="category-section mt-5 reveal" style="animation-delay: ${Math.random() * 0.3}s">
-        <h3 class="text-center mb-5" style="color: var(--text-dark); font-family: 'Playfair Display'; font-size: 1.8rem; letter-spacing: 1px;">
-          ${category.toUpperCase()}
-        </h3>
-        <div class="row g-4">
-          ${products.map(p => `
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
-              <div class="product-card h-100">
-                <div class="product-img-wrapper">
-                  <img src="${p.imageUrl}" class="card-img-top" alt="${p.name}"
-                       onerror="this.src='https://via.placeholder.com/400x300?text=${p.name.substring(0,8)}'">
-                  <div class="product-overlay"></div>
-                </div>
-                <div class="card-body">
-                  <p class="product-category">${p.category}</p>
-                  <h5 class="product-name">${p.name}</h5>
-                  
-                  <div class="price-section mb-3">
-                    ${p.originalPrice && p.originalPrice > p.price ? `
-                      <div class="original-price mb-1">Rs ${Math.round(p.originalPrice).toLocaleString()}</div>
-                      <div class="offer-price mb-1">Rs ${Math.round(p.price).toLocaleString()}</div>
-                      <div class="discount-badge">
-                        Save Rs ${Math.round(p.originalPrice - p.price).toLocaleString()}
-                        <span class="percent-off">(${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}% OFF)</span>
-                      </div>
-                    ` : `
-                      <div class="offer-price">Rs ${Math.round(p.price).toLocaleString()}</div>
-                    `}
-                  </div>
-                  
-                  <button class="btn btn-luxury btn-sm w-100 mb-2" 
-                          data-bs-toggle="modal" data-bs-target="#productModal"
-                          data-id="${p.id}"
-                          data-name="${p.name}"
-                          data-price="${p.price}"
-                          data-image="${p.imageUrl}"
-                          data-description="${p.description}"
-                          data-notes="${p.notes}"
-                          data-category="${p.category}">
-                    View Details
-                  </button>
-                  <button class="btn btn-add-cart add-to-cart w-100"
-                          data-name="${p.name}"
-                          data-price="${p.price}"
-                          data-image="${p.imageUrl}"
-                          data-category="${p.category}">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        
-        ${!showAll ? `
-          <a href="#collection" class="btn-view-all" data-category="${category}">
-            View All ${category} Products <i class="fas fa-arrow-right ms-2"></i>
-          </a>
-        ` : ''}
-        
-        ${isLastCategory ? `
-          <div class="category-separator mt-5">
-            <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=1920&q=80" alt="Category Separator" loading="lazy">
-          </div>
-        ` : ''}
-      </div>
+  // Show Full Category Products
+  function showCategoryProducts(category) {
+    const categoryProducts = allProducts.filter(p => p.category === category).sort((a, b) => b.price - a.price);
+    categoryTitle.innerHTML = `
+      
+      ${category.toUpperCase()} COLLECTION
     `;
     
-    // Re-attach event listeners
-    attachEventListeners();
+    // productList.innerHTML = categoryProducts.map(p => `
+    //   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+    //     <div class="product-card h-100">
+    //       <div class="product-img-wrapper">
+    //         <img src="${p.imageUrl}" class="card-img-top" alt="${p.name}" 
+    //              onerror="this.src='https://via.placeholder.com/400x300/21217555/FFFFFF?text=${p.name.substring(0,8)}'">
+    //       </div>
+    //       <div class="card-body">
+    //         <p class="product-category">${p.category}</p>
+    //         <h5 class="product-name">${p.name}</h5>
+    //         <div class="price-section mb-3">
+    //           <div class="original-price mb-1">Rs ${Math.round(p.originalPrice || p.price * 1.4).toLocaleString()}</div>
+    //           <div class="offer-price mb-1">Rs ${Math.round(p.price).toLocaleString()}</div>
+    //           <div class="discount-badge">
+    //             ${Math.round(((p.originalPrice || p.price * 1.4) - p.price) / (p.originalPrice || p.price * 1.4) * 100)}% OFF
+    //           </div>
+    //         </div>
+    //         <button class="btn btn-add-cart add-to-cart w-100" 
+    //                 data-name="${p.name}" 
+    //                 data-price="${p.price}" 
+    //                 data-image="${p.imageUrl}"
+    //                 data-category="${p.category}">
+    //           <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // `).join('');
+
+    productList.innerHTML = categoryProducts.map(p => `
+  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+    <div class="product-card h-100">
+      <div class="product-img-wrapper">
+        <img src="${p.imageUrl}" class="card-img-top" alt="${p.name}" 
+             onerror="this.src='https://via.placeholder.com/400x300/21217555/FFFFFF?text=${p.name.substring(0,8)}'">
+      </div>
+      <div class="card-body">
+        <p class="product-category">${p.category}</p>
+        <h5 class="product-name">${p.name}</h5>
+        <div class="price-section mb-3">
+          <div class="original-price mb-1">Rs ${Math.round(p.originalPrice || p.price * 1.4).toLocaleString()}</div>
+          <div class="offer-price mb-1">Rs ${Math.round(p.price).toLocaleString()}</div>
+          <div class="discount-badge">
+            ${Math.round(((p.originalPrice || p.price * 1.4) - p.price) / (p.originalPrice || p.price * 1.4) * 100)}% OFF
+          </div>
+        </div>
+        
+        <!-- ✅ VIEW DETAILS BUTTON ADD KIYA -->
+        <button class="btn btn-outline-warning w-100 mb-2 view-details-btn" 
+                data-bs-toggle="modal" 
+                data-bs-target="#productModal"
+                data-name="${p.name}" 
+                data-price="${p.price}" 
+                data-image="${p.imageUrl}"
+                data-category="${p.category}"
+                data-description="${p.description || 'Premium luxury fragrance with long-lasting scent. Perfect for daily wear.'}"
+                data-notes="${p.notes || 'Top: Citrus, Bergamot | Middle: Floral, Jasmine | Base: Musk, Vanilla'}">
+          <i class="fas fa-eye me-2"></i>View Details
+        </button>
+        
+        <!-- ✅ ADD TO CART BUTTON -->
+        <button class="btn btn-add-cart add-to-cart w-100" 
+                data-name="${p.name}" 
+                data-price="${p.price}" 
+                data-image="${p.imageUrl}"
+                data-category="${p.category}">
+          <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+    // Hide categories, show products
+    document.getElementById('categories').style.display = 'none';
+    productsSection.style.display = 'block';
+    productsSection.scrollIntoView({ behavior: 'smooth' });
+
+    attachCartEvents();
+    attachProductModalEvents();
   }
 
-  // ✅ ATTACH EVENT LISTENERS
-  function attachEventListeners() {
-    // Add to Cart
+  // Back to Categories
+  document.getElementById('back-to-categories').onclick = (e) => {
+    e.preventDefault();
+    productsSection.style.display = 'none';
+    document.getElementById('categories').style.display = 'block';
+    document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+    currentCategory = null;
+  };
+
+  // Attach Cart Events
+  function attachCartEvents() {
     document.querySelectorAll('.add-to-cart').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+      btn.onclick = (e) => {
+        e.stopPropagation();
         const name = btn.dataset.name;
-        const price = parseInt(btn.dataset.price);
+        const price = parseFloat(btn.dataset.price);
         const image = btn.dataset.image;
+        const category = btn.dataset.category;
+        
         const item = cart.find(i => i.name === name);
-        if (item) item.qty++;
-        else cart.push({ name, price, image, qty: 1 });
+        if (item) {
+          item.qty++;
+        } else {
+          cart.push({ name, price, image, category, qty: 1 });
+        }
+        
         updateCart();
         
+        // Success animation
         const original = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> Added!';
         btn.style.background = 'var(--primary-gold)';
-        btn.style.color = '#fff';
+        btn.style.color = 'white';
         setTimeout(() => {
           btn.innerHTML = original;
-          btn.style.background = '';
-          btn.style.color = '';
-        }, 2000);
-      });
-    });
-
-    // View All Category
-    document.querySelectorAll('.btn-view-all').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const category = btn.dataset.category;
-        currentCategoryFilter = category;
-        renderProducts(allProducts, category);
-        document.querySelector('#collection').scrollIntoView({ behavior: 'smooth' });
-      });
+          btn.style.background = 'transparent';
+          btn.style.color = 'black';
+        }, 1500);
+      };
     });
   }
 
-  // Update Cart
+
+  // ✅ PRODUCT MODAL EVENTS
+function attachProductModalEvents() {
+  // View Details Modal Events
+  document.querySelectorAll('.view-details-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Fill modal with product data
+      document.getElementById('modalProductName').textContent = this.dataset.name;
+      document.getElementById('modalProductCategory').textContent = this.dataset.category;
+      document.getElementById('modalProductPrice').textContent = parseFloat(this.dataset.price).toLocaleString();
+      document.getElementById('modalProductImage').src = this.dataset.image;
+      document.getElementById('modalProductDescription').textContent = this.dataset.description;
+      document.getElementById('modalProductNotes').textContent = this.dataset.notes;
+      
+      // Add to Cart button in modal
+      const modalAddBtn = document.getElementById('modalAddToCart');
+      modalAddBtn.onclick = () => {
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+        const category = this.dataset.category;
+        
+        const item = cart.find(i => i.name === name);
+        if (item) {
+          item.qty++;
+        } else {
+          cart.push({ name, price, image, category, qty: 1 });
+        }
+        updateCart();
+        
+        // Success toast
+        const toast = document.createElement('div');
+        toast.innerHTML = `
+          <div class="alert alert-success alert-dismissible fade show position-fixed" 
+               style="top: 20px; right: 20px; z-index: 9999; border-radius: 15px;">
+            <i class="fas fa-check-circle me-2"></i>Added to cart!
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+      };
+    });
+  });
+}
+
+  // Update Cart Display
   function updateCart() {
-    cartItems.innerHTML = '';
-    let total = 0;
-    
     if (cart.length === 0) {
       cartItems.innerHTML = `
-        <div class="text-center py-5">
-          <i class="fas fa-shopping-bag fa-3x text-muted mb-3"></i>
-          <p class="text-muted">Your cart is empty</p>
-          <a href="#collection" class="btn btn-luxury mt-3">Start Shopping</a>
+        <div class="text-center py-5 my-5">
+          <i class="fas fa-shopping-bag fa-4x text-muted mb-4"></i>
+          <h5 class="text-muted mb-3">Your cart is empty</h5>
+          <a href="#categories" class="btn btn-luxury">Start Shopping</a>
         </div>
       `;
     } else {
-      cart.forEach((item, index) => {
-        total += item.price * item.qty;
-        cartItems.innerHTML += `
-          <div class="cart-item p-3 mb-3 rounded" style="border-bottom: 1px solid rgba(212, 175, 55, 0.1); background: rgba(255,255,255,0.5);">
-            <img src="${item.image}" alt="${item.name}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 10px; margin-right: 15px;">
+      cartItems.innerHTML = cart.map((item, index) => `
+        <div class="cart-item p-3 mb-3 rounded-3" style="border-bottom: 1px solid rgba(212, 175, 55, 0.2); background: rgba(255,255,255,0.7);">
+          <div class="d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 12px; margin-right: 15px;">
             <div class="flex-grow-1">
-              <h6>${item.name}</h6>
-              <p style="color: var(--primary-gold); font-weight: 700;">Rs ${(item.price * item.qty).toLocaleString()}</p>
+              <h6 class="mb-1">${item.name}</h6>
+              <small class="text-muted">${item.category}</small>
+              <div class="mt-2">
+                <span style="color: var(--primary-gold); font-weight: 700; font-size: 1.1rem;">
+                  Rs ${(item.price * item.qty).toLocaleString()}
+                </span>
+              </div>
             </div>
-            <div class="qty-controls">
-              <button onclick="decreaseQty(${index})" style="border: 1px solid var(--primary-gold); background: transparent; color: var(--primary-gold); padding: 5px 12px; border-radius: 5px;">-</button>
-              <span class="mx-2 fw-bold">${item.qty}</span>
-              <button onclick="increaseQty(${index})" style="border: 1px solid var(--primary-gold); background: transparent; color: var(--primary-gold); padding: 5px 12px; border-radius: 5px;">+</button>
+            <div class="qty-controls d-flex align-items-center">
+              <button onclick="changeQty(${index}, -1)" class="btn btn-sm" style="background: #dc3545; color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">−</button>
+              <span class="mx-2 fw-bold fs-5">${item.qty}</span>
+              <button onclick="changeQty(${index}, 1)" class="btn btn-sm" style="background: var(--primary-gold); color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">+</button>
             </div>
           </div>
-        `;
-      });
+        </div>
+      `).join('');
     }
     
-    cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
-    cartTotal.textContent = total.toLocaleString();
+    const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+    const totalPrice = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    
+    cartCount.textContent = totalItems;
+    cartTotal.textContent = totalPrice.toLocaleString();
   }
 
-  // Global functions for qty controls
-  window.increaseQty = function(index) { cart[index].qty++; updateCart(); }
-  window.decreaseQty = function(index) { 
-    if (cart[index].qty > 1) cart[index].qty--; 
-    else cart.splice(index, 1); 
-    updateCart(); 
-  }
-
-  // Modal Events
-  document.getElementById('productModal').addEventListener('show.bs.modal', (e) => {
-    const btn = e.relatedTarget;
-    document.getElementById('modalProductImage').src = btn.dataset.image;
-    document.getElementById('modalProductName').textContent = btn.dataset.name;
-    document.getElementById('modalProductPrice').textContent = parseInt(btn.dataset.price).toLocaleString();
-    document.getElementById('modalProductCategory').textContent = btn.dataset.category;
-    document.getElementById('modalProductDescription').textContent = btn.dataset.description;
-    document.getElementById('modalProductNotes').textContent = btn.dataset.notes;
-
-    currentProduct = { 
-      id: btn.dataset.id, 
-      name: btn.dataset.name, 
-      price: parseInt(btn.dataset.price), 
-      image: btn.dataset.image 
-    };
-  });
-
-  document.getElementById('modalAddToCart').addEventListener('click', () => {
-    if (currentProduct) {
-      const item = cart.find(i => i.name === currentProduct.name);
-      if (item) item.qty++; 
-      else cart.push({ ...currentProduct, qty: 1 });
-      updateCart();
-      bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+  // Global Quantity Functions
+  window.changeQty = function(index, delta) {
+    if (delta > 0) {
+      cart[index].qty++;
+    } else if (cart[index].qty > 1) {
+      cart[index].qty--;
+    } else {
+      cart.splice(index, 1);
     }
-  });
+    updateCart();
+  };
 
   // Order Form Submit
   document.getElementById('order-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!cart.length) return alert('Cart is empty!');
+    if (cart.length === 0) {
+      alert('🛒 Your cart is empty!');
+      return;
+    }
     
-    const data = Object.fromEntries(new FormData(e.target));
-    data.items = cart;
-    data.total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const formData = Object.fromEntries(new FormData(e.target));
+    const orderData = {
+      ...formData,
+      items: cart.map(item => ({ ...item, total: item.price * item.qty })),
+      totalAmount: cart.reduce((sum, i) => sum + i.price * i.qty, 0),
+      orderDate: new Date().toISOString()
+    };
     
     try {
+      // Backend API call
       await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(orderData)
       });
-    } catch(e) {
-      console.log('Demo mode');
+    } catch (error) {
+      console.log('Demo mode - Order saved locally');
     }
     
-    alert(`🎉 Order placed successfully!\nTotal: Rs ${data.total.toLocaleString()}\nContact: ${data.phone}\nWe will call you shortly!`);
+    const total = orderData.totalAmount.toLocaleString();
+    alert(`🎉 Order Placed Successfully!\n\n💰 Total: Rs ${total}\n📱 Phone: ${orderData.phone}\n🏠 Address: ${orderData.address.substring(0, 50)}...\n\n✅ We will call you within 30 minutes!`);
     
-    cart.length = 0; 
-    updateCart(); 
-    e.target.reset();
+    // Reset cart
+    cart.length = 0;
+    updateCart();
     bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
+    e.target.reset();
   });
 
-  // Controls
-  document.getElementById('cartBtn').onclick = () => document.getElementById('cartSidebar').classList.add('open');
-  document.getElementById('closeCart').onclick = () => document.getElementById('cartSidebar').classList.remove('open');
-
-  document.addEventListener('click', e => {
-    const sidebar = document.getElementById('cartSidebar');
-    if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !document.getElementById('cartBtn').contains(e.target))
-      sidebar.classList.remove('open');
-  });
-
-  // Scroll Effects & Smooth Scroll
-  window.onscroll = () => {
-    document.querySelectorAll('.reveal').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight - 150) 
-        el.classList.add('active');
-    });
-    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+  // Cart Controls
+  document.getElementById('cartBtn').onclick = () => {
+    document.getElementById('cartSidebar').classList.add('open');
+  };
+  
+  document.getElementById('closeCart').onclick = () => {
+    document.getElementById('cartSidebar').classList.remove('open');
   };
 
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.onclick = e => {
-      e.preventDefault();
-      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-    };
+  // Close cart on outside click
+  document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('cartSidebar');
+    const cartBtn = document.getElementById('cartBtn');
+    if (sidebar.classList.contains('open') && 
+        !sidebar.contains(e.target) && 
+        !cartBtn.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
   });
 
-  // Initialize
+  // Smooth Scroll & Animations
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll Animations & Navbar Effect
+  window.addEventListener('scroll', () => {
+    // Reveal animations
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add('active');
+      }
+    });
+    
+    // Navbar scroll effect
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Initialize App
   document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
     updateCart();
+    // Trigger initial scroll for animations
     window.dispatchEvent(new Event('scroll'));
+    
+    console.log('👑 King\'s Fragrance Store - Ready! 🚀');
+    console.log('📁 Add your images in assets/img/ folder');
+    console.log('🔧 Update CATEGORY_IMAGES object with your category names');
   });
-
-  // Add CSS for active class
-  const style = document.createElement('style');
-  style.textContent = `
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-    nav.scrolled { padding: 15px 40px !important; }
-    @media (max-width: 768px) { nav.scrolled { padding: 12px 20px !important; } }
-    .btn-luxury { 
-      background: linear-gradient(145deg, var(--primary-gold), var(--secondary-gold)); 
-      color: #111 !important; 
-      padding: 12px 25px; 
-      border-radius: 30px; 
-      font-weight: 600; 
-      border: none; 
-      transition: all 0.4s ease; 
-      box-shadow: 0 10px 30px var(--shadow-gold);
-    }
-    .btn-luxury:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 50px var(--shadow-gold); }
-  `;
-  document.head.appendChild(style);
-
-  console.log('👑 King\'s Fragrance - Fully Loaded with Dynamic Categories! 🚀');
 </script>
-
-<!-- Preload Critical Images -->
-<script>
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
-});
-</script>
-
 </body>
 </html>
